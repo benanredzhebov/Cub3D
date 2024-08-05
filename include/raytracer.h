@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 13:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/05 14:44:54 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/05 15:46:56 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ void	read_and_save_cub_file(int row, int col, int i, t_data *data);
 void	save_cub(char *cub_path, t_data *data);
 
 //------retrieve_file_data.c-------
-
+int	retrieve_file_data(t_data *data, char **cub_file);
 
 //---------------------------------
 

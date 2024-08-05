@@ -6,13 +6,17 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:18:20 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/05 15:16:20 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/05 15:42:30 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/raytracer.h"
 
-/**/
+/*function extracts a texture path from a given line of text starting at index j.
+It skips leading whitespace, determines the length of the path,
+allocates memory for it, copies the path characters, skips trailing
+whitespace, and checks for any invalid characters. if the path is valid,
+it returns the allocated path*/
 static char	*add_tex_path(char *line, int j)
 {
 	int		len;
