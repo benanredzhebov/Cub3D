@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "raytracer.h": "c"
+        "raytracer.h": "c",
+        "readline.h": "c"
     }
 }

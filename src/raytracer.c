@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*   raytracing.c                                         :::      ::::::::   */
-/*                                                      :+:      :+:    :+:   */
-/*   By: demrodri <demrodri@student.42wolfsburg.de>   +:+ +:+         +:+     */
-/*   beredzhe <beredzhe@student.42wolfsburg.de>     +#+  +:+       +#+        */
+/*                                                        :::      ::::::::   */
+/*   raytracer.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 17:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/02 17:12:40 by both             ###   ########.fr       */
+/*   Updated: 2024/08/05 10:21:48 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raytracer.h"
+#include "../include/raytracer.h"
 
 void	move_player(t_player *player, \
 			float move_speed, int direction, t_map *map)

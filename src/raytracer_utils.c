@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*   raytracer_utils.c                                    :::      ::::::::   */
-/*                                                      :+:      :+:    :+:   */
-/*   By: demrodri <demrodri@student.42wolfsburg.de>   +:+ +:+         +:+     */
-/*   beredzhe <beredzhe@student.42wolfsburg.de>     +#+  +:+       +#+        */
+/*                                                        :::      ::::::::   */
+/*   raytracer_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 13:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/02 17:12:40 by both             ###   ########.de       */
+/*   Updated: 2024/08/05 10:22:22 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raytracer.h"
+#include "../include/raytracer.h"
 
 // Function to put a pixel on the screen at (x, y) with the specified color
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)

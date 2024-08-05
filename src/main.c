@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*   raytracer.c                                          :::      ::::::::   */
-/*                                                      :+:      :+:    :+:   */
-/*   By: demrodri <demrodri@student.42wolfsburg.de>   +:+ +:+         +:+     */
-/*   beredzhe <beredzhe@student.42wolfsburg.de>     +#+  +:+       +#+        */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 13:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/02 17:12:40 by both             ###   ########.de       */
+/*   Updated: 2024/08/05 10:26:25 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raytracer.h"
+#include "../include/raytracer.h"
 
 int	main(int argc, char **argv)
 {
@@ -21,7 +21,9 @@ int	main(int argc, char **argv)
 		fprintf(stderr, "Usage: %s <mapfile>\n", argv[0]);
 		return (1);
 	}
-	load_map(argv[1]);
+	// load_map(argv[1]);
+	if (parsing(&data, argv) == FAILURE)
+		return (free_data(&data), FAILURE);
 	data.mlx_ptr = mlx_init();
 	data.win_ptr = mlx_new_window(data.mlx_ptr, WIDTH, HEIGHT, "Raycasting");
 	data.img_ptr = mlx_new_image(data.mlx_ptr, WIDTH, HEIGHT);

@@ -1,44 +1,78 @@
-# Makefile for the raytracer project
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/08/01 11:16:35 by beredzhe          #+#    #+#              #
+#    Updated: 2024/08/05 09:53:02 by beredzhe         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-# Compiler
-CC = gcc
+NAME	= cub3D
+cc		= cc
+CFLAGS	= -Wall -Wextra -Werror -g -Imlx
 
-# Compiler flags
-CFLAGS = -Wall -Wextra -Werror -I./includes
+SRC_PATH = src/
+OBJ_PATH = obj/
 
-# Linker flags
-LDFLAGS = -lmlx -lX11 -lXext -lm
+HEADER	= include/raytracer.h
 
-# Source files
-SRCS = main.c raytracer.c
+SRC		= $(shell find $(SRC_PATH) -name '*.c')
+# SRCS	=$(addprefix $(SRC_PATH), $(SRC))
 
-# Object files
-OBJS = $(SRCS:.c=.o)
+OBJ		= $(SRC:$(SRC_PATH)%.c=$(OBJ_PATH)%.o)
+# OBJS	= $(addprefix $(OBJ_PATH), $(OBJ))
 
-# Output executable
-NAME = cub3d
+LIBFT_A	= ./libft/libft.a
 
-# Default target
-all: $(NAME)
+# Detect the operating system
+UNAME_S := $(shell uname -s)
 
-# Rule to link object files into the executable
-$(NAME): $(OBJS)
-	$(CC) $(OBJS) -o $(NAME) $(LDFLAGS)
+# Linux
+ifeq ($(UNAME_S), Linux)
+MLX_DIR = ./minilibx-linux
+MLXLIB = $(MLX_DIR)/libmlx.a
+MLXFLAGS = -L$(MLX_DIR) -lmlx -lX11 -lXext -lm
 
-# Rule to compile .c files into .o files
-%.o: %.c
+# macOS
+else
+MLX_DIR = ./minilibx_opengl_20191021
+MLXLIB = $(MLX_DIR)/libmlx.a
+MLXFLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+endif
+# endif marks the end of a conditional block in a Makefile
+
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c  $(HEADER)
+	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Rule to remove object files
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	$(MAKE) -C libft
+	$(MAKE) -C $(MLX_DIR)
+	$(CC) $(OBJ) $(CFLAGS) $(LIBFT_A) $(MLXFLAGS) -o $(NAME)
+	@echo "       --------------------------------"
+	@echo "\033[32mProject successfully compiled!\033[0m"
+	@echo "       --------------------------------"
+
 clean:
-	rm -f $(OBJS)
-
-# Rule to remove object files and the executable
+	$(MAKE) clean -C $(MLX_DIR)
+	$(MAKE) clean -C libft
+	$(RM) -rf $(OBJ_PATH)
+	@echo "       -----------"
+	@echo "\033[31mCleaned!\033[0m"
+	@echo "       -----------"
+	
 fclean: clean
-	rm -f $(NAME)
+	$(RM) $(NAME)
+	$(MAKE) fclean -C libft
+	@echo "       ---------------"
+	@echo "\033[31mFull cleaned!\033[0m"
+	@echo "       ---------------"
 
-# Rule to recompile everything
 re: fclean all
 
-# Phony targets
-.PHONY: all clean fclean re
+.PHONY:	all clean fclean re

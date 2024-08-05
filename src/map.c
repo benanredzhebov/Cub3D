@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*   map.c                                                :::      ::::::::   */
-/*                                                      :+:      :+:    :+:   */
-/*   By: demrodri <demrodri@student.42wolfsburg.de>   +:+ +:+         +:+     */
-/*   beredzhe <beredzhe@student.42wolfsburg.de>     +#+  +:+       +#+        */
+/*                                                        :::      ::::::::   */
+/*   map.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 17:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/02 17:12:40 by both             ###   ########.fr       */
+/*   Updated: 2024/08/05 10:22:33 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raytracer.h"
+#include "../include/raytracer.h"
 
 void	open_file(const char *filename, int *fd)
 {

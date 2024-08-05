@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raytracer.h"
+#include "../include/raytracer.h"
 
 void	init_render_data(t_render_data *render_data, t_player *player)
 {
