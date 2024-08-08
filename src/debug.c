@@ -1,29 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_mlx.c                                         :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/01 14:21:31 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/06 12:20:06 by beredzhe         ###   ########.fr       */
+/*   Created: 2024/08/06 14:23:11 by beredzhe          #+#    #+#             */
+/*   Updated: 2024/08/06 14:29:56 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/raytracer.h"
 
-void	init_mlx(t_data *data)
+void	print_array_2d(char **array_2d)
 {
-	data->mlx_ptr = mlx_init();
-	if (!data->mlx_ptr)
+	int	i;
+
+	i = 0;
+	while (array_2d[i])
 	{
-		print_error("Mlx: Startup error");
-		clean_exit(data, FAILURE);
+		printf("%s\n", array_2d[i]);
+		i++;
 	}
-	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT, "Cub3D");
-	if (!data->win_ptr)
+}
+
+/*prints each string in a 2D array of strings*/
+void	print_array_2d_newline(char **array_2d)
+{
+	int	i;
+
+	i = 0;
+	while (array_2d[i])
 	{
-		print_error("Mlx: Window error");
-		clean_exit(data, FAILURE);
+		printf("line idx %d\n", i);
+		printf("%s", array_2d[i]);
+		printf("\n");
+		i++;
 	}
 }

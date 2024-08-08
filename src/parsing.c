@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 11:34:15 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/05 15:49:04 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/08 12:36:32 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@ int parsing(t_data *data, char **argv)
 		exit(FAILURE);
 	save_cub(argv[1], data);
 	cub_file = data->cub_file;
+
 	if (retrieve_file_data(data, cub_file) == FAILURE)
 		return (FAILURE);
+	exit (0);
 	if (DEBUG)
 	{
 		printf("\nSaved map (**map after filling spaces):\n");
-		print_array_2d_newline(data->map);
+		print_array_2d_newline(data->map->map_data);
 		printf("\n");
 		printf("Saved textures:\n");
 		printf("South: %s\n", data->tex_south);
@@ -33,8 +35,8 @@ int parsing(t_data *data, char **argv)
 		printf("West: %s\n", data->tex_west);
 		printf("East: %s\n", data->tex_east);
 	}
-	// if (validate_map(data, data->map) == FAILURE)
-	// 	return (FAILURE)
-	// add_player_direction(data);
-	// return (SUCCESS);
+	if (validate_map(data, data->map->map_data) == FAILURE)
+		return (FAILURE);
+	add_player_direction(data);
+	return (SUCCESS);
 }

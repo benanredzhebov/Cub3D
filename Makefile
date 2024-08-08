@@ -6,7 +6,7 @@
 #    By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/01 11:16:35 by beredzhe          #+#    #+#              #
-#    Updated: 2024/08/05 09:53:02 by beredzhe         ###   ########.fr        #
+#    Updated: 2024/08/08 10:07:06 by beredzhe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,24 +54,24 @@ $(NAME): $(OBJ)
 	$(MAKE) -C libft
 	$(MAKE) -C $(MLX_DIR)
 	$(CC) $(OBJ) $(CFLAGS) $(LIBFT_A) $(MLXFLAGS) -o $(NAME)
-	@echo "       --------------------------------"
+	@echo "------------------------------"
 	@echo "\033[32mProject successfully compiled!\033[0m"
-	@echo "       --------------------------------"
+	@echo "------------------------------"
 
 clean:
 	$(MAKE) clean -C $(MLX_DIR)
 	$(MAKE) clean -C libft
 	$(RM) -rf $(OBJ_PATH)
-	@echo "       -----------"
+	@echo "---------"
 	@echo "\033[31mCleaned!\033[0m"
-	@echo "       -----------"
+	@echo "---------"
 	
 fclean: clean
 	$(RM) $(NAME)
 	$(MAKE) fclean -C libft
-	@echo "       ---------------"
+	@echo "-------------"
 	@echo "\033[31mFull cleaned!\033[0m"
-	@echo "       ---------------"
+	@echo "-------------"
 
 re: fclean all
 

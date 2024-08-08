@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 10:27:04 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/05 11:31:02 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/06 14:20:45 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,20 @@ void	free_textures(t_data *data)
 	free_array_2d((void **)data->tex_pixels);;
 }
 
+void	free_colors(t_data *data)
+{
+	if (data->col_ceiling)
+	{
+		free(data->col_ceiling);
+		data->col_ceiling = NULL;
+	}
+	if (data->col_floor)
+	{
+		free(data->col_floor);
+		data->col_floor = NULL;
+	}
+}
+
 /*release memory allocated for a 't_data' structure*/
 void	free_data(t_data *data)
 {
@@ -87,7 +101,7 @@ void	free_data(t_data *data)
 	free_colors(data);
 	if (data->map)
 	{
-		free_arrat_2d((void **)data->map);
+		free_array_2d((void **)data->map);
 		data->map = NULL;
 	}
 }

@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_mlx.c                                         :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/01 14:21:31 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/06 12:20:06 by beredzhe         ###   ########.fr       */
+/*   Created: 2024/08/06 14:36:08 by beredzhe          #+#    #+#             */
+/*   Updated: 2024/08/08 09:25:55 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/raytracer.h"
 
-void	init_mlx(t_data *data)
+char	*ft_strdup2(const char *s1, int len)
 {
-	data->mlx_ptr = mlx_init();
-	if (!data->mlx_ptr)
+	char *copy;
+	
+	copy = ft_calloc(len + 1, sizeof(char));
+	if (!copy)
+		return (NULL);
+	ft_memcpy(copy, s1, (ft_strlen(s1) + 1));
+	return (copy);
+}
+
+int	open_file(char *filepath, t_data *data)
+{
+	int	fd;
+	
+	fd = open(filepath, O_RDONLY);
+	if (fd == -1)
 	{
-		print_error("Mlx: Startup error");
+		print_error("The file could not be opened!");
 		clean_exit(data, FAILURE);
 	}
-	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT, "Cub3D");
-	if (!data->win_ptr)
-	{
-		print_error("Mlx: Window error");
-		clean_exit(data, FAILURE);
-	}
+	return (fd);
 }

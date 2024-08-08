@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:18:20 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/05 15:42:30 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/08 10:07:35 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ static int	add_textures(t_data *data, char *line, int j)
 	return (SUCCESS);
 }
 
+/*processes a line from the .cub file, skipping over spaces and newlines,
+and then performs different actions based on the type of the character encountered*/
 static int	skip_spaces(t_data *data, char **cub_file, int i, int j)
 {
 	while (ft_isspace(cub_file[i][j]) || cub_file[i][j] == '\n')

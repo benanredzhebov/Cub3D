@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 14:28:16 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/05 14:03:18 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/07 13:23:07 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,34 @@ bool	ft_isprint_no_space(int c)
 		return (true);
 	else
 		return (false);
+}
+
+size_t	ft_strlen_no_newline(const char *str)
+{
+	size_t	i;
+	size_t	len;
+	
+	i = 0;
+	len = 0;
+	while (str[i])
+	{
+		if (str[i] != '\n')
+			len++;
+		i++;
+	}
+	return (len);
+}
+
+size_t	find_max_width(t_data *data, int i)
+{
+	size_t	max_width;
+
+	max_width = ft_strlen_no_newline(data->cub_file[i]);
+	while (data->cub_file[i])
+	{
+		if (ft_strlen_no_newline(data->cub_file[i]) > max_width)
+			max_width = ft_strlen_no_newline(data->cub_file[i]);
+		i++;
+	}
+	return (max_width);
 }

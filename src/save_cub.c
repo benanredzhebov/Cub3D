@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 11:36:39 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/05 13:13:06 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/08 12:07:44 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,14 @@ int	validate_cub_file(char *filename)
 {
 	int	fd;
 	
+	printf("Debug: Checking file extension for %s\n", filename);
 	if (check_cub_file_extension(filename) == FAILURE)
 		return (print_error("Invalid file extension"), FAILURE);
+	printf("Debug: Opening file %s\n", filename);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (print_error("Couldn't open file"), FAILURE);
+	printf("Debug: Successfully opened file %s\n", filename);
 	close(fd);
 	return (SUCCESS);
 }
@@ -70,13 +73,16 @@ void	read_and_save_cub_file(int row, int col, int i, t_data *data)
 	line = get_next_line(data->cub_fd);
 	while (line != NULL)
 	{
+		printf("Debug: Read line: %s\n", line);
 		data->cub_file[row]
 			= ft_calloc(ft_strlen(line) + 1, sizeof(char));
 		if (!data->cub_file[row])
 			return (print_error("Memory allocation failed"), clean_exit(data, FAILURE));
+		printf("Debug: Allocated memory for row %d\n", row);
 		while (line[i] != '\0')
 			data->cub_file[row][col++] = line[i++];
 		data->cub_file[row++][col] = '\0';
+		printf("Debug: Saved line to cub_file[%d]: %s\n", row, data->cub_file[row]);
 		col = 0;
 		i = 0;
 		free(line);
@@ -99,7 +105,9 @@ void	save_cub(char *cub_path, t_data *data)
 	row = 0;
 	col = 0;
 	i = 0;
+	printf("Debug: Initializing save_cub with cub_path = %s\n", cub_path);
 	data->cub_height = line_counter(cub_path, data);
+	printf("Debug: cub_height = %d\n", data->cub_height);
 	data->cub_file
 		= ft_calloc(data->cub_height + 1, sizeof(char *));
 	if (!(data->cub_file))
@@ -108,6 +116,7 @@ void	save_cub(char *cub_path, t_data *data)
 	if (DEBUG)
 		printf("\n.cub file contains %d lines\n", data->cub_height);
 	data->cub_fd = open_file(cub_path, data);
+	printf("Debug: cub_fd = %d\n", data->cub_fd);
 	read_and_save_cub_file(row, col, i, data);
 	if (DEBUG)
 	{	
