@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 14:28:16 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/07 13:23:07 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/09 15:04:27 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,17 @@ size_t	ft_strlen_no_newline(const char *str)
 
 size_t	find_max_width(t_data *data, int i)
 {
+	printf("\nFIND_MAX_WIDTH\n");
 	size_t	max_width;
 
 	max_width = ft_strlen_no_newline(data->cub_file[i]);
+	printf("Debug: Initial max_width: %zu\n", max_width);
 	while (data->cub_file[i])
 	{
 		if (ft_strlen_no_newline(data->cub_file[i]) > max_width)
 			max_width = ft_strlen_no_newline(data->cub_file[i]);
 		i++;
 	}
+	printf("Debug: New max_width: %zu\n", max_width);
 	return (max_width);
 }

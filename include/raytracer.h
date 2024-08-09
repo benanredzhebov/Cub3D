@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 13:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/08 12:15:18 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/09 11:46:51 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,9 +151,10 @@ typedef struct s_render_data
 }	t_render_data;
 
 //------------init.c--------------
-void	init_data(t_data *data);
 void	init_data_player(t_data *data);
 void	init_data_cub_map(t_data *data);
+void	init_map(t_map *map);
+void	init_data(t_data *data);
 
 //------------utils.c--------------
 void	print_error(char *error_msg);

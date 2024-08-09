@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 11:36:39 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/08 12:07:44 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/09 09:52:55 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ int	check_cub_file_extension(char *filename)
 
 /*validates a .cub file by checking its extension and
 attempting to open it*/
-int	validate_cub_file(char *filename)
+int	 validate_cub_file(char *filename)
 {
+	printf("\nVALIDATE_CUB_FILE\n");
 	int	fd;
 	
 	printf("Debug: Checking file extension for %s\n", filename);
@@ -68,6 +69,7 @@ int	line_counter(char *filepath, t_data *data)
 them into a 2D array within a t_data structure.*/
 void	read_and_save_cub_file(int row, int col, int i, t_data *data)
 {
+	printf("\nREAD_AND_SAVE_CUB_FILE\n");
 	char	*line;
 	
 	line = get_next_line(data->cub_fd);
@@ -98,6 +100,7 @@ void	read_and_save_cub_file(int row, int col, int i, t_data *data)
 */
 void	save_cub(char *cub_path, t_data *data)
 {
+	printf("\nSAVE_CUB\n");
 	int	row;
 	int	col;
 	int	i;

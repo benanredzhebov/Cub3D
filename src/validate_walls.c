@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:25:09 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/08 10:03:52 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/09 11:03:44 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ int	dfs(t_data *data, char **map_clone)
 
 int	validate_walls(t_data *data)
 {
+	printf("\nVALIDATE_WALLS\n");
 	char	**map_clone;
 	int		i;
 	int		valid;
