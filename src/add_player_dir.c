@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_player_dir.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: benanredzhebov <benanredzhebov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:17:58 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/10 12:42:08 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/11 00:03:13 by benanredzhe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

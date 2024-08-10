@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raytracer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: benanredzhebov <benanredzhebov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 17:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/06 14:15:34 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/11 00:32:33 by benanredzhe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../include/raytracer.h"
+#include "../include/raytracer.h"
 
 // void	move_player(t_player *player, \
 // 			float move_speed, int direction, t_map *map)
@@ -27,10 +27,31 @@
 // 	}
 // }
 
+void	move_player(t_data *data, \
+			float move_speed, int direction, t_map *map)
+{
+	(void)map;
+	float	new_x;
+	float	new_y;
+
+	new_x = data->player_x + cos(data->player_dir) * move_speed * direction;
+	new_y = data->player_y + sin(data->player_dir) * move_speed * direction;
+	if (!is_wall(new_x, new_y, data))
+	{
+		data->player_x = new_x;
+		data->player_y = new_y;
+	}
+}
+
 // void	rotate_player(t_player *player, float rot_speed, int direction)
 // {
 // 	player->angle += rot_speed * direction;
 // }
+
+void	rotate_player(t_data *data, float rot_speed, int direction)
+{
+	data->player_dir += rot_speed * direction;
+}
 
 // int	key_press(int keycode, t_player *player, t_map *map)
 // {
@@ -53,12 +74,27 @@
 // 	return (0);
 // }
 
-// int	main_loop(t_data *data)
-// {
-// 	static t_player	player = {TILE_SIZE * 1.5, TILE_SIZE * 1.5, 0};
+int	key_press(int keycode, t_data *data)
+{
+	if (keycode == W)
+		move_player(data, MOVESPEED, 1, data->map);
+	else if (keycode == S)
+		move_player(data, MOVESPEED, -1, data->map);
+	else if (keycode == A)
+		rotate_player(data, ROTSPEED, -1);
+	else if (keycode == D)
+		rotate_player(data, ROTSPEED, 1);
+	else if (keycode == ESC)
+		exit(0);
+	return (0);
+}
 
-// 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
-// 	render(data, &player, data->map);
-// 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_ptr, 0, 0);
-// 	return (0);
-// }
+int	main_loop(t_data *data)
+{
+	static t_player	player = {TILE_SIZE * 1.5, TILE_SIZE * 1.5, 0};
+
+	mlx_clear_window(data->mlx_ptr, data->win_ptr);
+	render(data, &player, data->map);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_ptr, 0, 0);
+	return (0);
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracer_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: benanredzhebov <benanredzhebov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 13:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/06 14:15:46 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/10 23:42:56 by benanredzhe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 // 	return (t << 24 | r << 16 | g << 8 | b);
 // }
 
-// // Function to check if a given (x, y) position is a wall in the map
+// Function to check if a given (x, y) position is a wall in the map
 // int	is_wall(int x, int y, int map[MAP_HEIGHT][MAP_WIDTH])
 // {
 // 	int	map_x;
@@ -45,3 +45,17 @@
 // 		return (1);
 // 	return (map[map_y][map_x]);
 // }
+
+// Function to check if a given (x, y) position is a wall in the map
+int	is_wall(int r, int c, t_data *data)
+{
+	int	map_r;
+	int	map_c;
+
+	map_r = r / TILE_SIZE;
+	map_c = c / TILE_SIZE;
+
+	if (map_r < 0 || map_r >= data->map->map_width || map_c < 0 || map_c >= data->map->map_height)
+		return (1);
+	return (data->map->map_data[map_c][map_r]);
+}

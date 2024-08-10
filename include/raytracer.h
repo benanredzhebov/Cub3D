@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracer.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: benanredzhebov <benanredzhebov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 13:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/10 12:32:29 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/11 00:32:25 by benanredzhe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define RAYTRACER_H
 
 // -----------------LIBS---------------
-# include <mlx.h>
 # include <math.h>
 # include <fcntl.h>
 # include <unistd.h>
@@ -60,12 +59,14 @@
 
 // -----------------------------------
 
-# define WIDTH 800
-# define HEIGHT 600
-# define TILE_SIZE 64
+# define WIDTH 1200
+# define HEIGHT 900
+# define TILE_SIZE 128
 // # define MAP_WIDTH 10
 // # define MAP_HEIGHT 10
-# define M_PI 3.14159265358979323846
+
+# define MOVESPEED 0.02275
+# define ROTSPEED 0.015
 
 enum e_status
 {
@@ -97,43 +98,43 @@ typedef struct s_map
 
 typedef struct s_data
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	void	*img_ptr;
-	t_map	*map;
-	char	*data_addr;
-	char	player_dir; // Direction the player is facing (N, S, E, W)
-	int		player_x; // Player's x-coordinate on the map
-	int		player_y; // Player's y-coordinate on the map
-	double	player_pos_x; // Player's exact x-position
-	double	player_pos_y; // Player's exact y-position
-	double	player_dir_x; // Player's direction vector x-component
-	double	player_dir_y; // Player's direction vector y-component
-	double	player_plane_x; // Player's camera plane x-component
-	double	player_plane_y; // Player's camera plane y-component
-	int		bpp;
-	int		size_line;
-	int		endian;
-	int		**textures; //Array of textures
-	int		**tex_pixels; //Array of texture pixels
-	char	*tex_north; //Path to the north texture
-	char	*tex_east; //Path to the east texture
-	char	*tex_south; //Path to the south texture
-	char	*tex_west; //Path to the west texture
-	char	**cub_file; //Content of .cub file
-	char	*cub_path; // Path to the .cub file
-	int		cub_height; //Number of lines in the .cub file
-	int		cub_fd; // File descriptor for the .cub file
-	int		*col_ceiling; // RGB values for ceiling color
-	int		*col_floor; // RGB values for floor color
+	void		*mlx_ptr;
+	void		*win_ptr;
+	void		*img_ptr;
+	t_map		*map;
+	char		*data_addr;
+	char		player_dir; // Direction the player is facing (N, S, E, W)
+	int			player_x; // Player's x-coordinate on the map
+	int			player_y; // Player's y-coordinate on the map
+	double		player_pos_x; // Player's exact x-position
+	double		player_pos_y; // Player's exact y-position
+	double		player_dir_x; // Player's direction vector x-component
+	double		player_dir_y; // Player's direction vector y-component
+	double		player_plane_x; // Player's camera plane x-component
+	double		player_plane_y; // Player's camera plane y-component
+	int			bpp;
+	int			size_line;
+	int			endian;
+	int			**textures; //Array of textures
+	int			**tex_pixels; //Array of texture pixels
+	char		*tex_north; //Path to the north texture
+	char		*tex_east; //Path to the east texture
+	char		*tex_south; //Path to the south texture
+	char		*tex_west; //Path to the west texture
+	char		**cub_file; //Content of .cub file
+	char		*cub_path; // Path to the .cub file
+	int			cub_height; //Number of lines in the .cub file
+	int			cub_fd; // File descriptor for the .cub file
+	int			*col_ceiling; // RGB values for ceiling color
+	int			*col_floor; // RGB values for floor color
 }	t_data;
 
-typedef struct s_player
-{
-	float	x;
-	float	y;
-	float	angle;
-}	t_player;
+// typedef struct s_player
+// {
+// 	float	x;
+// 	float	y;
+// 	float	angle; //player dir
+// }	t_player;
 
 typedef struct s_render_data
 {
@@ -224,9 +225,11 @@ void	init_map_data(t_dfs *map_data, t_data *data, char **map_clone);
 // void	load_map(const char *filename);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		create_trgb(int t, int r, int g, int b);
-// int		is_wall(int x, int y, int map[MAP_HEIGHT][MAP_WIDTH]);
+int		is_wall(int r, int c, t_data *data);
 // void	render(t_data *data, t_player *player, int map[MAP_HEIGHT][MAP_WIDTH]);
-int		key_press(int keycode, t_player *player, t_map *map);
+// int		key_press(int keycode, t_player *player, t_map *map);
+int		key_press(int keycode, t_data *data);
+void	rotate_player(t_data *data, float rot_speed, int direction);
 int		main_loop(t_data *data);
 
 #endif // RAYTRACER_H
