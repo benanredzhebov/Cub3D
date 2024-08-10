@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 08:46:15 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/09 10:47:16 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/10 10:38:19 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,14 @@ static bool	no_digit_found(char *str)
 an array of integers(rgb)*/
 static int	*convert_and_add_rgb(char **rgb_to_convert, int *rgb)
 {
-	printf("\nCONVERT_AND_ADD_RGB\n");
 	int		i;
 
 	i = -1;
 	while (rgb_to_convert[++i])
 	{
-		printf("Debug: rgb_to_convert[%d] = %s\n", i, rgb_to_convert[i]);
 		rgb[i] = ft_atoi(rgb_to_convert[i]);
-		printf("Debug: rgb[%d] after ft_atoi = %d\n", i, rgb[i]);
 		if (rgb[i] == -1 || no_digit_found(rgb_to_convert[i]))
 		{
-			printf("Debug: Invalid value detected, rgb[%d] = %d\n", i, rgb[i]);
 			free_array_2d((void **)rgb_to_convert);
 			free(rgb);
 			return (0);
@@ -90,28 +86,21 @@ that each part contains only digits, allocates memory for the RGB values,
 and converts the strings to integers.*/
 static int	*add_rgb(char *line)
 {
-	printf("\nADD_RGB\n");
 	char	**rgb_to_convert;
 	int		*rgb;
 	int		count;
 
-	printf("Debug: Entering add_rgb with line = %s\n", line);
 	rgb_to_convert = ft_split(line, ',');
 	count = 0;
 	while (rgb_to_convert[count])
-	{
-		printf("Debug: rgb_to_convert[%d] = %s\n", count, rgb_to_convert[count]);
 		count++;
-	}
 	if (count != 3)
 	{
-		printf("Debug: Invalid number of RGB components, count = %d\n", count);
 		free_array_2d((void **)rgb_to_convert);
 		return (0);
 	}
 	if (col_only_digits(rgb_to_convert) == 0)
 	{
-		printf("Debug: Non-digit characters found in RGB components\n");
 		free_array_2d((void **)rgb_to_convert);
 		return (0);
 	}
@@ -129,31 +118,24 @@ to a t_data structure It checks for invalid characters, determines whether
 the color data is for the ceiling ('C') or floor ('F'), and calls the
 `add_rgb` function to convert and add the RGB values. If any step fails,
 it prints an error message and returns `FAILURE`. If successful, it returns `SUCCESS`.*/
-int	add_colors(t_data *data, char *line, int j)
+int	
+add_colors(t_data *data, char *line, int j)
 {
-	printf("\nADD_COLORS\n");
-	printf("Debug: Entering add_colors with line = %s, j = %d\n", line, j);
-	if (line[j + 1] && ft_isprint_no_space(line[j + 1])){
-		printf("Debug: Invalid character after F or C, line[%d + 1] = %c\n", j, line[j + 1]);
+	if (line[j + 1] && ft_isprint_no_space(line[j + 1]))
 		return (print_error("Colors: Invalid F or C data"), FAILURE);
-	}
 	if (!data->col_ceiling && line[j] == 'C')
 	{
-		printf("Debug: Adding ceiling color, line[%d] = %c\n", j, line[j]);
 		data->col_ceiling = add_rgb(line + j + 1);
 		if (data->col_ceiling == 0)
 			return (print_error("Colors: Invalid F or C data"), FAILURE);
 	}
 	else if (!data->col_floor && line[j] == 'F')
 	{
-		printf("Debug: Adding floor color, line[%d] = %c\n", j, line[j]);
 		data->col_floor = add_rgb(line + j + 1);
 		if (data->col_floor == 0)
 			return (print_error("Colors: Invalid F data"), FAILURE);
 	}
-	else{
-		printf("Debug: Invalid F or C data, line[%d] = %c\n", j, line[j]);
+	else
 		return (print_error("Colors: Invalid F or C data"), FAILURE);
-	}
 	return (SUCCESS);
 }

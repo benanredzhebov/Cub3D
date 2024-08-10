@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 13:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/08 11:27:32 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/10 11:41:15 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	main(int argc, char **argv)
 	init_data(&data);
 	if (parsing(&data, argv) == FAILURE)
 		return (free_data(&data), FAILURE);
-	// exit (0);
 	data.mlx_ptr = mlx_init();
 	if (!data.mlx_ptr)
 	{

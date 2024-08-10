@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 09:08:58 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/07 10:52:00 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/10 11:36:23 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ static int	check_map_is_at_the_end(t_data *data)
 	return (SUCCESS);
 }
 
+/*locate the player's initial position on a map and update the player's
+coordinates in the 'data' structure*. It also replaces the player's
+position on the map with a '0' to indicate an empty space*/
 static int	add_player_position(t_data *data, char **map)
 {
 	int	i;

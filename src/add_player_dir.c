@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:17:58 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/07 12:27:39 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/10 11:08:33 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ static void	player_east_west(t_data *data)
 	}
 	else if (ft_strcmp(&data->player_dir, "E") == 0)		
 	{
-		data->player_dir_x = -1;
+		data->player_dir_x = 1;
 		data->player_dir_y = 0;
 		data->player_plane_x = 0;
-		data->player_plane_y = -0.66;
+		data->player_plane_y = 0.66;
 	}
 	else
 		return ;	

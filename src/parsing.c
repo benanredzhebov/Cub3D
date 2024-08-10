@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 11:34:15 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/08 12:36:32 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/10 10:44:30 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int parsing(t_data *data, char **argv)
 
 	if (retrieve_file_data(data, cub_file) == FAILURE)
 		return (FAILURE);
-	exit (0);
 	if (DEBUG)
 	{
 		printf("\nSaved map (**map after filling spaces):\n");
