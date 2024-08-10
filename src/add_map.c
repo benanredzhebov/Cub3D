@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:10:43 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/10 10:31:49 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/10 12:46:17 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	count_map_lines(t_data *data, char **file, int i)
 {
 	int	index_val;
 	int	j;
-	
+
 	index_val = i;
 	while (file[i])
 	{
@@ -53,7 +53,7 @@ static int	count_map_lines(t_data *data, char **file, int i)
 		while (ft_isspace(file[i][j]))
 			j++;
 		if (file[i][j] && file[i][j] != '1')
-			break;
+			break ;
 		i++;
 	}
 	data->map->map_end_index = i;
@@ -106,12 +106,12 @@ static int	retrieve_map_data(t_data *data, char **cub_file, int i)
 int	add_map(t_data *data, char **cub_file, int i)
 {
 	int	j;
-	
+
 	if (data->map == NULL)
 	{
 		data->map = malloc(sizeof(t_map));
-		if (!data->map) 
-			return(print_error("Error: Failed to allocate memory for map"), FAILURE);
+		if (!data->map)
+			return (print_error("Failed to allocate memory for map"), FAILURE);
 	}
 	init_map(data->map);
 	if (retrieve_map_data(data, cub_file, i) == FAILURE)

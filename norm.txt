@@ -1,0 +1,22 @@
+src/add_colors.c: OK!
+src/add_map2.c: OK!
+src/add_map.c: OK!
+src/add_player_dir.c: OK!
+src/debug.c: OK!
+src/exit.c: OK!
+src/free.c: OK!
+src/init.c: OK!
+src/init_mlx.c: OK!
+src/main.c: OK!
+src/map.c: OK!
+src/parsing.c: OK!
+src/raytracer.c: OK!
+src/raytracer_utils.c: OK!
+src/render.c: Error!
+Error: INVALID_HEADER       (line:  12, col:   1):	Missing or invalid 42 header
+src/retrieve_file_data.c: OK!
+src/save_cub.c: OK!
+src/utils2.c: OK!
+src/utils.c: OK!
+src/validate_map.c: OK!
+src/validate_walls.c: OK!

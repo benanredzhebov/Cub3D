@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:25:09 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/10 10:37:37 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/10 12:47:43 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int	dfs(t_data *data, char **map_clone)
 	i = -1;
 	while (++i < map_data.h)
 	{
-		j =-1;
+		j = -1;
 		while (++j < map_data.w)
 		{
 			if (map_data.map[i][j] == '0' || map_data.map[i][j] == 'N'
@@ -141,9 +141,8 @@ int	validate_walls(t_data *data)
 		map_clone[i] = ft_strdup2(data->map->map_data[i], data->map->map_width);
 	valid = dfs(data, map_clone);
 	i = -1;
-	while (++i < data->map->map_height){
+	while (++i < data->map->map_height)
 		free(map_clone[i]);
-	}
 	free(map_clone);
 	if (valid)
 		return (SUCCESS);

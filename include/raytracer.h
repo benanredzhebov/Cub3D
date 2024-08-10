@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 13:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/10 10:38:59 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/10 12:32:29 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ typedef struct s_map
 	char	**map_data;
 }	t_map;
 
-
 typedef struct s_data
 {
 	void	*mlx_ptr;
@@ -127,7 +126,6 @@ typedef struct s_data
 	int		cub_fd; // File descriptor for the .cub file
 	int		*col_ceiling; // RGB values for ceiling color
 	int		*col_floor; // RGB values for floor color
-	
 }	t_data;
 
 typedef struct s_player
@@ -150,6 +148,9 @@ typedef struct s_render_data
 	int		color;
 }	t_render_data;
 
+//----------init_mlx.c------------
+void	init_mlx(t_data *data);
+
 //------------init.c--------------
 void	init_data_player(t_data *data);
 void	init_data_cub_map(t_data *data);
@@ -163,9 +164,8 @@ bool	ft_isprint_no_space(int c);
 size_t	find_max_width(t_data *data, int i);
 size_t	ft_strlen_no_newline(const char *str);
 
-
 //------------utils2.c------------
-int	open_file(char *filepath, t_data *data);
+int		open_file(char *filepath, t_data *data);
 char	*ft_strdup2(const char *s1, int len);
 
 //------------debug.c-------------
@@ -173,7 +173,7 @@ void	print_array_2d_newline(char **array_2d);
 void	print_array_2d(char **array_2d);
 
 //------------parsing.c------------
-int 	parsing(t_data *data, char **argv);
+int		parsing(t_data *data, char **argv);
 
 //---------validate_map.c----------
 int		validate_map(t_data *data, char **map);
@@ -184,7 +184,6 @@ void	add_player_direction(t_data *data);
 //----------add_colors.c----------
 int		add_colors(t_data *data, char *line, int j);
 int		col_only_digits(char **map);
-
 
 //------------free.c---------------
 void	free_array_2d(void **array_2d);
@@ -204,7 +203,7 @@ void	read_and_save_cub_file(int row, int col, int i, t_data *data);
 void	save_cub(char *cub_path, t_data *data);
 
 //------retrieve_file_data.c-------
-int	retrieve_file_data(t_data *data, char **cub_file);
+int		retrieve_file_data(t_data *data, char **cub_file);
 
 //----------add_map.c-------------
 int		add_map(t_data *data, char **cub_file, int i);

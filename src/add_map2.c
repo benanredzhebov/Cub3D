@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 11:55:24 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/10 10:32:37 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/10 12:46:46 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ static void	copy_line(char *new_line, char *old_line)
 void	make_map_rectangular(t_data *data)
 {
 	int		i;
-	char		*new_line;
-	
+	char	*new_line;
+
 	i = 0;
 	while (i < data->map->map_height)
 	{

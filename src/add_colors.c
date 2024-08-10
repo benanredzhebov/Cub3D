@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 08:46:15 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/10 10:38:19 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/10 12:43:49 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,9 +117,9 @@ static int	*add_rgb(char *line)
 to a t_data structure It checks for invalid characters, determines whether
 the color data is for the ceiling ('C') or floor ('F'), and calls the
 `add_rgb` function to convert and add the RGB values. If any step fails,
-it prints an error message and returns `FAILURE`. If successful, it returns `SUCCESS`.*/
-int	
-add_colors(t_data *data, char *line, int j)
+it prints an error message and returns `FAILURE`. If successful, it returns
+`SUCCESS`.*/
+int	add_colors(t_data *data, char *line, int j)
 {
 	if (line[j + 1] && ft_isprint_no_space(line[j + 1]))
 		return (print_error("Colors: Invalid F or C data"), FAILURE);

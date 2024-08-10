@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 09:08:58 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/10 11:36:23 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/10 12:40:17 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	check_map_is_at_the_end(t_data *data)
 {
 	int	i;
 	int	j;
-	
+
 	i = data->map->map_end_index;
 	while (data->cub_file[i])
 	{
@@ -42,7 +42,7 @@ static int	add_player_position(t_data *data, char **map)
 {
 	int	i;
 	int	j;
-	
+
 	if (data->player_dir == '0')
 		return (print_error("Map: no player found"), FAILURE);
 	i = 0;
@@ -80,7 +80,7 @@ static int	check_map_elements(t_data *data, char **map)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	data->player_dir = '0';
 	while (map[i] != NULL)
@@ -91,7 +91,8 @@ static int	check_map_elements(t_data *data, char **map)
 			while (ft_isspace(data->map->map_data[i][j]))
 				j++;
 			if (!(ft_strchr("10NEWS", map[i][j])))
-				return (print_error("Map: Contains invalid character"), FAILURE);
+				return (print_error("Map: Contains invalid character"), \
+				FAILURE);
 			if (ft_strchr ("NEWS", map[i][j]) && data->player_dir != '0')
 				return (print_error("Map: more than one player"), FAILURE);
 			if (ft_strchr ("NEWS", map[i][j]) && data->player_dir == '0')
@@ -114,6 +115,7 @@ int	validate_map(t_data *data, char **map)
 	if (add_player_position(data, map) == FAILURE)
 		return (FAILURE);
 	if (check_map_is_at_the_end(data) == FAILURE)
-		return (print_error("Map: Should be the last element in file"), FAILURE);
+		return (print_error("Map: Should be the last element in file"), \
+		FAILURE);
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 11:36:39 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/10 10:36:02 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/10 12:37:48 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	check_cub_file_extension(char *filename)
 {
 	size_t	length_of_filename;
-	
+
 	length_of_filename = ft_strlen(filename);
 	if (length_of_filename < 4)
 		return (FAILURE);
@@ -28,10 +28,10 @@ int	check_cub_file_extension(char *filename)
 
 /*validates a .cub file by checking its extension and
 attempting to open it*/
-int	 validate_cub_file(char *filename)
+int	validate_cub_file(char *filename)
 {
 	int	fd;
-	
+
 	if (check_cub_file_extension(filename) == FAILURE)
 		return (print_error("Invalid file extension"), FAILURE);
 	fd = open(filename, O_RDONLY);
@@ -66,14 +66,15 @@ them into a 2D array within a t_data structure.*/
 void	read_and_save_cub_file(int row, int col, int i, t_data *data)
 {
 	char	*line;
-	
+
 	line = get_next_line(data->cub_fd);
 	while (line != NULL)
 	{
 		data->cub_file[row]
 			= ft_calloc(ft_strlen(line) + 1, sizeof(char));
 		if (!data->cub_file[row])
-			return (print_error("Memory allocation failed"), clean_exit(data, FAILURE));
+			return (print_error("Memory allocation failed"), \
+			clean_exit(data, FAILURE));
 		while (line[i] != '\0')
 			data->cub_file[row][col++] = line[i++];
 		data->cub_file[row++][col] = '\0';
@@ -103,14 +104,15 @@ void	save_cub(char *cub_path, t_data *data)
 	data->cub_file
 		= ft_calloc(data->cub_height + 1, sizeof(char *));
 	if (!(data->cub_file))
-		return (print_error("Memory allocation failed"), clean_exit(data, FAILURE));
+		return (print_error("Memory allocation failed"), \
+		clean_exit(data, FAILURE));
 	data->cub_path = cub_path;
 	if (DEBUG)
 		printf("\n.cub file contains %d lines\n", data->cub_height);
 	data->cub_fd = open_file(cub_path, data);
 	read_and_save_cub_file(row, col, i, data);
 	if (DEBUG)
-	{	
+	{
 		printf("\n------------- .cub ----------------\n");
 		print_array_2d(data->cub_file);
 		printf("\n-----------------------------------\n\n");

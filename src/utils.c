@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 14:28:16 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/10 10:36:20 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/10 12:27:54 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ size_t	ft_strlen_no_newline(const char *str)
 {
 	size_t	i;
 	size_t	len;
-	
+
 	i = 0;
 	len = 0;
 	while (str[i])

@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:17:58 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/10 11:08:33 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/10 12:42:08 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	player_north_south(t_data *data)
 		data->player_plane_x = -0.66;
 		data->player_plane_y = 0;
 	}
-	else if (ft_strcmp(&data->player_dir, "N") == 0)		
+	else if (ft_strcmp(&data->player_dir, "N") == 0)
 	{
 		data->player_dir_x = 0;
 		data->player_dir_y = -1;
@@ -38,7 +38,7 @@ static void	player_north_south(t_data *data)
 		data->player_plane_y = 0;
 	}
 	else
-		return ;	
+		return ;
 }
 
 /*West player direction: 
@@ -57,7 +57,7 @@ static void	player_east_west(t_data *data)
 		data->player_plane_x = 0;
 		data->player_plane_y = -0.66;
 	}
-	else if (ft_strcmp(&data->player_dir, "E") == 0)		
+	else if (ft_strcmp(&data->player_dir, "E") == 0)
 	{
 		data->player_dir_x = 1;
 		data->player_dir_y = 0;
@@ -65,7 +65,7 @@ static void	player_east_west(t_data *data)
 		data->player_plane_y = 0.66;
 	}
 	else
-		return ;	
+		return ;
 }
 
 // set the player direction
@@ -80,10 +80,10 @@ void	add_player_direction(t_data *data)
 			data->player_dir);
 		printf("player_x (idx on **map): %i\n", data->player_x);
 		printf("player_y (idx on **map): %i\n", data->player_y);
-		printf("player_pos_x (+0.5 to idx to get real position on a grid): %f\n",
-			data->player_pos_x);
-		printf("player_pos_y (+0.5 to idx to get real position on a grid): %f\n",
-			data->player_pos_y);
+		printf("player_pos_x (+0.5 to idx to get real \
+		position on a grid): %f\n", data->player_pos_x);
+		printf("player_pos_y (+0.5 to idx to get real \
+		position on a grid): %f\n", data->player_pos_y);
 		printf("player_dir_x: %f\n", data->player_dir_x);
 		printf("player_dir_y: %f\n", data->player_dir_y);
 		printf("player_plane_x: %f\n", data->player_plane_x);

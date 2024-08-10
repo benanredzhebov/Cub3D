@@ -6,13 +6,14 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:18:20 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/10 10:35:11 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/10 12:39:13 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/raytracer.h"
 
-/*function extracts a texture path from a given line of text starting at index j.
+/*function extracts a texture path from a given line of text starting at
+index j.
 It skips leading whitespace, determines the length of the path,
 allocates memory for it, copies the path characters, skips trailing
 whitespace, and checks for any invalid characters. if the path is valid,
@@ -68,7 +69,8 @@ static int	add_textures(t_data *data, char *line, int j)
 }
 
 /*processes a line from the .cub file, skipping over spaces and newlines,
-and then performs different actions based on the type of the character encountered*/
+and then performs different actions based on the type of the character
+encountered*/
 static int	skip_spaces(t_data *data, char **cub_file, int i, int j)
 {
 	while (ft_isspace(cub_file[i][j]) || cub_file[i][j] == '\n')
@@ -81,13 +83,13 @@ static int	skip_spaces(t_data *data, char **cub_file, int i, int j)
 			if (add_textures(data, cub_file[i], j) == FAILURE)
 				return (FAILURE);
 			return (TEXTURE_ADDED);
-		}	
+		}
 		else
 		{
 			if (add_colors(data, cub_file[i], j) == FAILURE)
 				return (FAILURE);
 			return (TEXTURE_ADDED);
-		}	
+		}
 	}
 	else if (ft_isdigit(cub_file[i][j]))
 	{
@@ -118,7 +120,7 @@ int	retrieve_file_data(t_data *data, char **cub_file)
 			else if (status == SUCCESS)
 				return (SUCCESS);
 			else if (status == TEXTURE_ADDED)
-				break;
+				break ;
 			j++;
 		}
 		i++;

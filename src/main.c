@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 13:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/10 11:41:15 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/10 12:31:43 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,7 @@ int	main(int argc, char **argv)
 	init_data(&data);
 	if (parsing(&data, argv) == FAILURE)
 		return (free_data(&data), FAILURE);
-	data.mlx_ptr = mlx_init();
-	if (!data.mlx_ptr)
-	{
-		print_error("Memmory allocation failed");
-		clean_exit(&data, FAILURE);
-	}
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WIDTH, HEIGHT, "Raycasting");
-	if (!data.win_ptr)
-	{
-		print_error("Mlx: Window error");
-		clean_exit(&data, FAILURE);
-	}
+	init_mlx(&data);
 	data.img_ptr = mlx_new_image(data.mlx_ptr, WIDTH, HEIGHT);
 	data.data_addr = mlx_get_data_addr
 		(data.img_ptr, &data.bpp, &data.size_line, &data.endian);

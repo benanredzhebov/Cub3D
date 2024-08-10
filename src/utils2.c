@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 14:36:08 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/10 10:36:38 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/10 12:42:47 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_strdup2(const char *s1, int len)
 {
-	char *copy;
-	
+	char	*copy;
+
 	copy = ft_calloc(len + 1, sizeof(char));
 	if (!copy)
 		return (NULL);
@@ -26,7 +26,7 @@ char	*ft_strdup2(const char *s1, int len)
 int	open_file(char *filepath, t_data *data)
 {
 	int	fd;
-	
+
 	fd = open(filepath, O_RDONLY);
 	if (fd == -1)
 	{

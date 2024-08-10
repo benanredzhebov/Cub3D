@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 10:27:04 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/10 11:40:49 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/10 12:33:47 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	free_array_2d(void **array_2d)
 	int	i;
 
 	if (!array_2d)
-		return;
+		return ;
 	i = 0;
 	while (array_2d[i])
 	{
@@ -76,7 +76,7 @@ void	free_textures(t_data *data)
 		data->tex_west = NULL;
 	}
 	free_array_2d((void **)data->textures);
-	free_array_2d((void **)data->tex_pixels);;
+	free_array_2d((void **)data->tex_pixels);
 }
 
 void	free_colors(t_data *data)
