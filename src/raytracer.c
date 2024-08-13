@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 17:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/13 09:23:44 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/13 13:53:52 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,21 @@ void	move_player(t_player *player, \
 // 	}
 // }
 
-void	move_player(t_data *data, \
-			float move_speed, int direction, t_map *map)
-{
-	(void)map;
-	float	new_x;
-	float	new_y;
+// void	move_player(t_data *data, \
+// 			float move_speed, int direction, t_map *map)
+// {
+// 	(void)map;
+// 	float	new_x;
+// 	float	new_y;
 
-	new_x = data->player_x + cos(data->player_dir) * move_speed * direction;
-	new_y = data->player_y + sin(data->player_dir) * move_speed * direction;
-	if (!is_wall(new_x, new_y, data))
-	{
-		data->player_x = new_x;
-		data->player_y = new_y;
-	}
-}
+// 	new_x = data->player_x + cos(data->player_dir) * move_speed * direction;
+// 	new_y = data->player_y + sin(data->player_dir) * move_speed * direction;
+// 	if (!is_wall(new_x, new_y, data))
+// 	{
+// 		data->player_x = new_x;
+// 		data->player_y = new_y;
+// 	}
+// }
 
 // void	rotate_player(t_player *player, float rot_speed, int direction)
 // {
@@ -61,40 +61,54 @@ int	key_press(int keycode, t_player *player, t_map *map)
 	move_speed = 10.0;
 	rot_speed = 0.1;
 
-	if (keycode == 13) // W
-		move_player(player, move_speed, 1, map);
-	else if (keycode == 1) // S
-		move_player(player, move_speed, -1, map);
-	else if (keycode == 0) // A
-		rotate_player(player, rot_speed, -1);
-	else if (keycode == 2) // D
-		rotate_player(player, rot_speed, 1);
-	else if (keycode == 53) // Esc
-		exit(0);
-	return (0);
-}
+// 	if (keycode == 13) // W
+// 		move_player(player, move_speed, 1, map);
+// 	else if (keycode == 1) // S
+// 		move_player(player, move_speed, -1, map);
+// 	else if (keycode == 0) // A
+// 		rotate_player(player, rot_speed, -1);
+// 	else if (keycode == 2) // D
+// 		rotate_player(player, rot_speed, 1);
+// 	else if (keycode == 53) // Esc
+// 		exit(0);
+// 	return (0);
+// }
 
-int	key_press(int keycode, t_data *data)
-{
-	if (keycode == W)
-		move_player(data, MOVESPEED, 1, data->map);
-	else if (keycode == S)
-		move_player(data, MOVESPEED, -1, data->map);
-	else if (keycode == A)
-		rotate_player(data, ROTSPEED, -1);
-	else if (keycode == D)
-		rotate_player(data, ROTSPEED, 1);
-	else if (keycode == ESC)
-		exit(0);
-	return (0);
-}
+// int	key_press(int keycode, t_data *data)
+// {
+// 	if (keycode == W)
+// 		move_player(data, MOVESPEED, 1, data->map);
+// 	else if (keycode == S)
+// 		move_player(data, MOVESPEED, -1, data->map);
+// 	else if (keycode == A)
+// 		rotate_player(data, ROTSPEED, -1);
+// 	else if (keycode == D)
+// 		rotate_player(data, ROTSPEED, 1);
+// 	else if (keycode == ESC)
+// 		exit(0);
+// 	return (0);
+// }
 
-int	main_loop(t_data *data)
-{
-	static t_player	player = {TILE_SIZE * 1.5, TILE_SIZE * 1.5, 0};
+// void	input(t_data *data)
+// {
+// 	mlx_hook(data->win_ptr, X, 0L, quit_cub3d, data);
+// 	mlx_hook(data->win_ptr, 2, 1L << 0, key_press, data);
+// }
 
-	mlx_clear_window(data->mlx_ptr, data->win_ptr);
-	render(data, &player, data->map);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_ptr, 0, 0);
-	return (0);
-}
+// int	main_loop(t_data *data)
+// {
+// 	static t_player	player = {TILE_SIZE * 1.5, TILE_SIZE * 1.5, 0};
+
+// 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
+// 	render(data, &player, data->map);
+// 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_ptr, 0, 0);
+// 	return (0);
+// }
+
+// int	main_loop(t_data *data)
+// {
+// 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
+// 	render(&data);
+// 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_ptr, 0, 0);
+// 	return (0);
+// }

@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 13:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/13 09:12:58 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/13 13:54:19 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define RAYTRACER_H
 
 // -----------------LIBS---------------
+# define _USE_MATH_DEFINES
 # include <math.h>
 # include <fcntl.h>
 # include <unistd.h>
@@ -96,6 +97,15 @@ typedef struct s_map
 	char	**map_data;
 }	t_map;
 
+typedef struct s_img
+{
+	void	*img; // Pointer to the image
+	int		*addr; // Address of the image data
+	int		pixel_bits; //Bits per pixel
+	int		size_line; // Size of a line in bytes
+	int		endian; //Endianess (0: little-endian, 1: big-endian)
+}	t_img;
+
 typedef struct s_data
 {
 	void		*mlx_ptr;
@@ -114,7 +124,6 @@ typedef struct s_data
 	double		player_plane_y; // Player's camera plane y-component
 	int			bpp;
 	int			size_line;
-	int			endian;
 	int			**textures; //Array of textures
 	int			**tex_pixels; //Array of texture pixels
 	char		*tex_north; //Path to the north texture
@@ -127,6 +136,7 @@ typedef struct s_data
 	int			cub_fd; // File descriptor for the .cub file
 	int			*col_ceiling; // RGB values for ceiling color
 	int			*col_floor; // RGB values for floor color
+	int			player_has_moved; // Flag to check if the player has moved
 }	t_data;
 
 // typedef struct s_player
@@ -138,15 +148,15 @@ typedef struct s_data
 
 typedef struct s_render_data
 {
-	float	ray_angle;
-	float	distance_to_wall;
-	int		hit_wall;
-	float	ray_pos_x;
-	float	ray_pos_y;
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
-	int		color;
+	float	ray_angle; // Angle of the ray relative to the player's view direction
+	float	distance_to_wall; // Distance from the player to the wall that was hit by the ray
+	int		hit_wall; // Flag indicating whether the ray hit a wall (1: hit, 0: no hit)
+	float	ray_pos_x; // X-coordinate of the ray's current position during the trace
+	float	ray_pos_y; // Y-coordinate of the ray's current position during the trace
+	int		line_height; // Height of the line to be drawn on the screen for the wall slice
+	int		draw_start; // Starting y-coordinate on the screen where the wall slice begins.
+	int		draw_end; // Ending y-coordinate on the screen where the wall slice ends.
+	int		color; // Color of the wall slice to be drawn
 }	t_render_data;
 
 //----------init_mlx.c------------
@@ -195,6 +205,7 @@ void	free_colors(t_data *data);
 
 //------------exit.c----------------
 void	clean_exit(t_data *data, int exitstatus);
+int		quit_cub3d(t_data *data);
 
 //------------save_cub.c------------
 int		check_cub_file_extension(char *filename);
@@ -220,6 +231,12 @@ int		dfs(t_data *data, char **map_clone);
 void	dfs_recursive(t_dfs *map_data, int r, int c);
 void	init_map_data(t_dfs *map_data, t_data *data, char **map_clone);
 
+//------------input.c--------------
+void	input(t_data *data);
+
+//------------image.c--------------
+
+
 //---------------------------------
 
 // void	load_map(const char *filename);
@@ -227,9 +244,12 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		create_trgb(int t, int r, int g, int b);
 int		is_wall(int x, int y, int map[HEIGHT][WIDTH]);
 // void	render(t_data *data, t_player *player, int map[MAP_HEIGHT][MAP_WIDTH]);
+// void	render(t_data *data, int map[data->map->map_height][data->map->map_width]);
+int		render(t_data *data);
 // int		key_press(int keycode, t_player *player, t_map *map);
 int		key_press(int keycode, t_data *data);
 void	rotate_player(t_data *data, float rot_speed, int direction);
 int		main_loop(t_data *data);
+int		init_mlx_wrapper(void *param); //delete
 
 #endif // RAYTRACER_H

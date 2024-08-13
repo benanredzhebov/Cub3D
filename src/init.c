@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 12:55:00 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/09 11:49:35 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/13 10:58:34 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	init_data_player(t_data *data)
 	data->player_dir_y = 0;
 	data->player_plane_x = 0;
 	data->player_plane_y = 0;
+	data->player_has_moved = 0;
 }
 
 void	init_data(t_data *data)
