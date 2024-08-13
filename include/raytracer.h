@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracer.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: benanredzhebov <benanredzhebov@student.    +#+  +:+       +#+        */
+/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 13:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/11 00:32:25 by benanredzhe      ###   ########.fr       */
+/*   Updated: 2024/08/13 09:12:58 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,7 +225,7 @@ void	init_map_data(t_dfs *map_data, t_data *data, char **map_clone);
 // void	load_map(const char *filename);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		create_trgb(int t, int r, int g, int b);
-int		is_wall(int r, int c, t_data *data);
+int		is_wall(int x, int y, int map[HEIGHT][WIDTH]);
 // void	render(t_data *data, t_player *player, int map[MAP_HEIGHT][MAP_WIDTH]);
 // int		key_press(int keycode, t_player *player, t_map *map);
 int		key_press(int keycode, t_data *data);

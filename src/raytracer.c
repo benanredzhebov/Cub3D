@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   raytracer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: benanredzhebov <benanredzhebov@student.    +#+  +:+       +#+        */
+/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 17:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/11 00:32:33 by benanredzhe      ###   ########.fr       */
+/*   Updated: 2024/08/13 09:23:44 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/raytracer.h"
 
-// void	move_player(t_player *player, \
-// 			float move_speed, int direction, t_map *map)
-// {
-// 	float	new_x;
-// 	float	new_y;
+void	move_player(t_player *player, \
+			float move_speed, int direction, t_map *map)
+{
+	float	new_x;
+	float	new_y;
 
 // 	new_x = player->x + cos(player->angle) * move_speed * direction;
 // 	new_y = player->y + sin(player->angle) * move_speed * direction;
@@ -53,26 +53,26 @@ void	rotate_player(t_data *data, float rot_speed, int direction)
 	data->player_dir += rot_speed * direction;
 }
 
-// int	key_press(int keycode, t_player *player, t_map *map)
-// {
-// 	float	move_speed;
-// 	float	rot_speed;
+int	key_press(int keycode, t_player *player, t_map *map)
+{
+	float	move_speed;
+	float	rot_speed;
 
-// 	move_speed = 10.0;
-// 	rot_speed = 0.1;
+	move_speed = 10.0;
+	rot_speed = 0.1;
 
-// 	if (keycode == 13) // W
-// 		move_player(player, move_speed, 1, map);
-// 	else if (keycode == 1) // S
-// 		move_player(player, move_speed, -1, map);
-// 	else if (keycode == 0) // A
-// 		rotate_player(player, rot_speed, -1);
-// 	else if (keycode == 2) // D
-// 		rotate_player(player, rot_speed, 1);
-// 	else if (keycode == 53) // Esc
-// 		exit(0);
-// 	return (0);
-// }
+	if (keycode == 13) // W
+		move_player(player, move_speed, 1, map);
+	else if (keycode == 1) // S
+		move_player(player, move_speed, -1, map);
+	else if (keycode == 0) // A
+		rotate_player(player, rot_speed, -1);
+	else if (keycode == 2) // D
+		rotate_player(player, rot_speed, 1);
+	else if (keycode == 53) // Esc
+		exit(0);
+	return (0);
+}
 
 int	key_press(int keycode, t_data *data)
 {
