@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracer.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: benanredzhebov <benanredzhebov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 13:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/13 13:54:19 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/14 12:34:46 by benanredzhe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,7 @@ void	init_data_player(t_data *data);
 void	init_data_cub_map(t_data *data);
 void	init_map(t_map *map);
 void	init_data(t_data *data);
+void	init_img_null(t_img *img);
 
 //------------utils.c--------------
 void	print_error(char *error_msg);
@@ -235,6 +236,7 @@ void	init_map_data(t_dfs *map_data, t_data *data, char **map_clone);
 void	input(t_data *data);
 
 //------------image.c--------------
+void	init_img(t_data *data, t_img *image, int width, int height);
 
 
 //---------------------------------
@@ -242,7 +244,7 @@ void	input(t_data *data);
 // void	load_map(const char *filename);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		create_trgb(int t, int r, int g, int b);
-int		is_wall(int x, int y, int map[HEIGHT][WIDTH]);
+// int		is_wall(int x, int y, int map[HEIGHT][WIDTH]);
 // void	render(t_data *data, t_player *player, int map[MAP_HEIGHT][MAP_WIDTH]);
 // void	render(t_data *data, int map[data->map->map_height][data->map->map_width]);
 int		render(t_data *data);

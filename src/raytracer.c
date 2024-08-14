@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   raytracer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: benanredzhebov <benanredzhebov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 17:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/13 13:53:52 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/14 11:34:00 by benanredzhe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/raytracer.h"
 
-void	move_player(t_player *player, \
-			float move_speed, int direction, t_map *map)
-{
-	float	new_x;
-	float	new_y;
+// void	move_player(t_player *player, \
+// 			float move_speed, int direction, t_map *map)
+// {
+// 	float	new_x;
+// 	float	new_y;
 
 // 	new_x = player->x + cos(player->angle) * move_speed * direction;
 // 	new_y = player->y + sin(player->angle) * move_speed * direction;
@@ -53,13 +53,13 @@ void	rotate_player(t_data *data, float rot_speed, int direction)
 	data->player_dir += rot_speed * direction;
 }
 
-int	key_press(int keycode, t_player *player, t_map *map)
-{
-	float	move_speed;
-	float	rot_speed;
+// int	key_press(int keycode, t_player *player, t_map *map)
+// {
+// 	float	move_speed;
+// 	float	rot_speed;
 
-	move_speed = 10.0;
-	rot_speed = 0.1;
+// 	move_speed = 10.0;
+// 	rot_speed = 0.1;
 
 // 	if (keycode == 13) // W
 // 		move_player(player, move_speed, 1, map);

@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: benanredzhebov <benanredzhebov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 12:55:00 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/13 10:58:34 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/14 11:32:29 by benanredzhe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/raytracer.h"
+
+void	init_img_null(t_img *img)
+{
+	img->img = NULL;
+	img->addr = NULL;
+	img->pixel_bits = 0;
+	img->size_line = 0;
+	img->endian = 0;
+}
 
 void	init_data_cub_map(t_data *data)
 {
@@ -62,5 +71,4 @@ void	init_data(t_data *data)
 	data->data_addr = NULL;
 	data->bpp = 0;
 	data->size_line = 0;
-	data->endian = 0;
 }
