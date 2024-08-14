@@ -6,7 +6,7 @@
 /*   By: benanredzhebov <benanredzhebov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 12:55:00 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/14 11:32:29 by benanredzhe      ###   ########.fr       */
+/*   Updated: 2024/08/14 22:02:18 by benanredzhe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	init_img_null(t_img *img)
 {
 	img->img = NULL;
 	img->addr = NULL;
-	img->pixel_bits = 0;
+	img->bits_per_pixel = 0;
 	img->size_line = 0;
 	img->endian = 0;
 }
@@ -31,8 +31,8 @@ void	init_data_cub_map(t_data *data)
 
 void	init_map(t_map *map)
 {
-	map->win_width = WIDTH;
-	map->win_height = HEIGHT;
+	map->win_width = WIN_WIDTH;
+	map->win_height = WIN_HEIGHT;
 	map->map_height = 0;
 	map->map_width = 0;
 	map->map_end_index = 0;

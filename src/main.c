@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: benanredzhebov <benanredzhebov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 13:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/13 13:52:33 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/14 22:16:32 by benanredzhe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 int	main(int argc, char **argv)
 {
 	t_data	data;
-
+	t_img	image; //delete it later
+	
 	if (argc != 2)
 		return (print_error("Usage: ./cub3d <path/to/map.cub>"), 1);
 	init_data(&data);
 	if (parsing(&data, argv) == FAILURE)
 		return (free_data(&data), FAILURE);
 	init_mlx(&data);
-	data.img_ptr = mlx_new_image(data.mlx_ptr, WIDTH, HEIGHT);
+	init_img(&data, &image, data.map->win_width, data.map->win_height);
+	// data.img_ptr = mlx_new_image(data.mlx_ptr, WIDTH, HEIGHT);
 	// data.data_addr = mlx_get_data_addr
 	// 	(data.img_ptr, &data.bpp, &data.size_line, &data.endian);
 	// exit(0);

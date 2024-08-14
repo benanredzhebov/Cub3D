@@ -6,7 +6,7 @@
 /*   By: benanredzhebov <benanredzhebov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 13:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/14 12:34:46 by benanredzhe      ###   ########.fr       */
+/*   Updated: 2024/08/14 22:19:13 by benanredzhe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # include "../libft/libft.h"
 
 //------------------DEBUG--------------
-# define DEBUG 1
+# define DEBUG 0
 
 //------------KEYBOARD MACROS----------
 
@@ -60,8 +60,8 @@
 
 // -----------------------------------
 
-# define WIDTH 1200
-# define HEIGHT 900
+# define WIN_WIDTH 1200
+# define WIN_HEIGHT 900
 # define TILE_SIZE 128
 // # define MAP_WIDTH 10
 // # define MAP_HEIGHT 10
@@ -101,7 +101,7 @@ typedef struct s_img
 {
 	void	*img; // Pointer to the image
 	int		*addr; // Address of the image data
-	int		pixel_bits; //Bits per pixel
+	int		bits_per_pixel; //Bits per pixel
 	int		size_line; // Size of a line in bytes
 	int		endian; //Endianess (0: little-endian, 1: big-endian)
 }	t_img;
