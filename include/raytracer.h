@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracer.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: benanredzhebov <benanredzhebov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 13:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/15 10:11:26 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/15 15:11:06 by benanredzhe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ typedef struct s_data
 	char		*tex_east; //Path to the east texture
 	char		*tex_south; //Path to the south texture
 	char		*tex_west; //Path to the west texture
+	int			tex_size;
 	char		**cub_file; //Content of .cub file
 	char		*cub_path; // Path to the .cub file
 	int			cub_height; //Number of lines in the .cub file
@@ -246,6 +247,9 @@ void	input(t_data *data);
 //------------image.c--------------
 void	init_img(t_data *data, t_img *image, int width, int height);
 
+//--------init_textures.c----------
+void	init_textures(t_data *data);
+void	init_texture_img(t_data *data, t_img *image, char *path);
 
 //---------------------------------
 

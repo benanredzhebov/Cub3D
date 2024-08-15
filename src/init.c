@@ -6,7 +6,7 @@
 /*   By: benanredzhebov <benanredzhebov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 12:55:00 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/14 22:02:18 by benanredzhe      ###   ########.fr       */
+/*   Updated: 2024/08/15 15:03:08 by benanredzhe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	init_data(t_data *data)
 	data->tex_west = NULL;
 	data->tex_north = NULL;
 	data->tex_south = NULL;
+	data->tex_size = TILE_SIZE;
 	data->col_ceiling = NULL;
 	data->col_floor = NULL;
 	data->tex_pixels = NULL;
