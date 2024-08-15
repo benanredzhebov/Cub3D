@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: benanredzhebov <benanredzhebov@student.    +#+  +:+       +#+        */
+/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 13:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/14 22:16:32 by benanredzhe      ###   ########.fr       */
+/*   Updated: 2024/08/15 10:07:25 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int argc, char **argv)
 	if (parsing(&data, argv) == FAILURE)
 		return (free_data(&data), FAILURE);
 	init_mlx(&data);
+	init_textures(&data);
 	init_img(&data, &image, data.map->win_width, data.map->win_height);
 	// data.img_ptr = mlx_new_image(data.mlx_ptr, WIDTH, HEIGHT);
 	// data.data_addr = mlx_get_data_addr
