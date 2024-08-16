@@ -105,13 +105,16 @@
 // 	}
 // }
 
+void	render_images(t_data *data)
+{
+	init_texture_pixels(data);
+}
 
-
-// int	render(t_data *data)
-// {
-// 	data->player_has_moved += move_player(data);
-// 	if (data->player_has_moved == 0)
-// 		return (0);
-// 	render_images(data);
-// 	return (0);
-// }
+int	render(t_data *data)
+{
+	data->player_has_moved += move_player(data);
+	if (data->player_has_moved == 0)
+		return (0);
+	render_images(data);
+	return (0);
+}

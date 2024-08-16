@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: benanredzhebov <benanredzhebov@student.    +#+  +:+       +#+        */
+/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 17:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/14 11:34:00 by benanredzhe      ###   ########.fr       */
+/*   Updated: 2024/08/16 12:29:01 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,31 +27,11 @@
 // 	}
 // }
 
-// void	move_player(t_data *data, \
-// 			float move_speed, int direction, t_map *map)
-// {
-// 	(void)map;
-// 	float	new_x;
-// 	float	new_y;
-
-// 	new_x = data->player_x + cos(data->player_dir) * move_speed * direction;
-// 	new_y = data->player_y + sin(data->player_dir) * move_speed * direction;
-// 	if (!is_wall(new_x, new_y, data))
-// 	{
-// 		data->player_x = new_x;
-// 		data->player_y = new_y;
-// 	}
-// }
 
 // void	rotate_player(t_player *player, float rot_speed, int direction)
 // {
 // 	player->angle += rot_speed * direction;
 // }
-
-void	rotate_player(t_data *data, float rot_speed, int direction)
-{
-	data->player_dir += rot_speed * direction;
-}
 
 // int	key_press(int keycode, t_player *player, t_map *map)
 // {

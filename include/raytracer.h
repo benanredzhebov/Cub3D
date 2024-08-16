@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracer.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: benanredzhebov <benanredzhebov@student.    +#+  +:+       +#+        */
+/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 13:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/15 15:11:06 by benanredzhe      ###   ########.fr       */
+/*   Updated: 2024/08/16 12:52:06 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,9 +118,7 @@ typedef struct s_data
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	void		*img_ptr;
 	t_map		*map;
-	char		*data_addr;
 	char		player_dir; // Direction the player is facing (N, S, E, W)
 	int			player_x; // Player's x-coordinate on the map
 	int			player_y; // Player's y-coordinate on the map
@@ -130,22 +128,23 @@ typedef struct s_data
 	double		player_dir_y; // Player's direction vector y-component
 	double		player_plane_x; // Player's camera plane x-component
 	double		player_plane_y; // Player's camera plane y-component
-	int			bpp;
-	int			size_line;
+	int			player_move_y;
+	int			player_move_x;
+	int			player_rotate;
+	int			player_has_moved; // Flag to check if the player has moved
 	int			**textures; //Array of textures
 	int			**tex_pixels; //Array of texture pixels
 	char		*tex_north; //Path to the north texture
 	char		*tex_east; //Path to the east texture
 	char		*tex_south; //Path to the south texture
 	char		*tex_west; //Path to the west texture
-	int			tex_size;
+	int			tex_size; // Texture pixel. Im my case 128x128
 	char		**cub_file; //Content of .cub file
 	char		*cub_path; // Path to the .cub file
 	int			cub_height; //Number of lines in the .cub file
 	int			cub_fd; // File descriptor for the .cub file
 	int			*col_ceiling; // RGB values for ceiling color
 	int			*col_floor; // RGB values for floor color
-	int			player_has_moved; // Flag to check if the player has moved
 }	t_data;
 
 // typedef struct s_player
@@ -250,6 +249,17 @@ void	init_img(t_data *data, t_img *image, int width, int height);
 //--------init_textures.c----------
 void	init_textures(t_data *data);
 void	init_texture_img(t_data *data, t_img *image, char *path);
+void	init_texture_pixels(t_data *data);
+
+//-----------render.c--------------
+int		render(t_data *data);
+void	render_images(t_data *data);
+
+//--------player_move.c-----------
+int	move_player(t_data *data);
+
+//--------_player_rotate.c----------
+int rotate_player(t_data *data, double rotdir);
 
 //---------------------------------
 
@@ -262,8 +272,7 @@ int		create_trgb(int t, int r, int g, int b);
 int		render(t_data *data);
 // int		key_press(int keycode, t_player *player, t_map *map);
 int		key_press(int keycode, t_data *data);
-void	rotate_player(t_data *data, float rot_speed, int direction);
+// void	rotate_player(t_data *data, float rot_speed, int direction);
 int		main_loop(t_data *data);
-int		init_mlx_wrapper(void *param); //delete
 
 #endif // RAYTRACER_H
