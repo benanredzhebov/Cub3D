@@ -27,6 +27,21 @@ void draw_square(void *mlx, void *win, int x, int y, int color)
 	}
 }
 
+void draw_lil_square(void *mlx, void *win, int x, int y, int color)
+{
+	int i = 0;
+	while (i < 2)
+	{
+		int j = 0;
+		while (j < 2)
+		{
+			mlx_pixel_put(mlx, win, x + i, y + j, color);
+			j++;
+		}
+		i++;
+	}
+}
+
 // void draw_textured_square(void *mlx, void *win, int x, int y, void *texture)
 // {
 // 	int i = 0;
@@ -123,7 +138,8 @@ ft_printf("3x = %d, y = %d, angle = %d\n", data->player.x, data->player.y, data-
 	// color = create_trgb(0, 255, 255, 255);
 	// draw_square(mlx, win, data->player.x * TILE_SIZE, data->player.y * TILE_SIZE, color);
 
-
+    draw_lil_square(data->mlx, data->win, data->player.x * TILE_SIZE + (TILE_SIZE/2), \
+	data->player.y * TILE_SIZE + (TILE_SIZE/2), create_trgb(0, 255, 255, 255));
 
 	// color = create_trgb(0, 0, 0, 0);
 	// mlx_pixel_put(data->mlx, data->win, data->player.x * TILE_SIZE + (TILE_SIZE/2), data->player.y * TILE_SIZE + (TILE_SIZE/2), color);

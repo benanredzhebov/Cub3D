@@ -1,94 +1,99 @@
 #include "cub3d.h"
 
-void update_player(t_map map, t_data *data)
+void update_player(t_data *data, int new_x, int new_y, int new_angle)
 {
-	int 	i;
-	int 	j;
-	int 	k;
-	int 	color;
-	// t_map 	mapa;
+    int floor_color = create_trgb(0, 255, 50, 255); // Floor color
+    // int player_color = create_trgb(0, 0, 0, 0); // Player color
 
-	// mapa = *data->map;
+    // Clear the previous player position
+    draw_lil_square(data->mlx, data->win, data->player.x * TILE_SIZE + (TILE_SIZE/2), \
+	data->player.y * TILE_SIZE + (TILE_SIZE/2), floor_color);
+		// mlx_pixel_put(data->mlx, data->win, data->player.x * TILE_SIZE, data->player.y * TILE_SIZE, player_color);
 
-	mlx_clear_window(data->mlx, data->win); // Clear the window before redrawing
+    // Update the player's position
+    data->player.x = new_x;
+    data->player.y = new_y;
+	data->player.angle = new_angle;
 
 
-	i = 0;
-	k = 0;
-	while (i < map.height)
-	{
-		j = 0;
-		while (j < map.width)
-		{
-			if (map.map_data[i][j] == '1')
-				color = create_trgb(0, 0, 10, 255); //0xFFFFFF
-			else
-			{
-				color = create_trgb(0, 255, 50, 255); //0x00FF00
-			}
-			draw_square(data->mlx, data->win, j * TILE_SIZE, i * TILE_SIZE, color);
-			j++;
-		}
-		i++;
-	}
-ft_printf("4x = %d, y = %d, angle = %d\n", data->player.x, data->player.y, data->player.angle);
+    // Draw the player at the new position
+    // draw_lil_square(data->mlx, data->win, data->player.x * TILE_SIZE + (TILE_SIZE/2), \
+	// data->player.y * TILE_SIZE + (TILE_SIZE/2), floor_color);
 
 
 
-
-
-
-	color = create_trgb(0, 0, 0, 0);
-	mlx_pixel_put(data->mlx, data->win, data->player.x * TILE_SIZE + (TILE_SIZE/2), data->player.y * TILE_SIZE + (TILE_SIZE/2), color);
-	while (k < 10)
-	{
-		color = create_trgb(0, 255, 255, 0);
-		mlx_pixel_put(data->mlx, data->win,data->player.x * TILE_SIZE + (TILE_SIZE/2) + k + 2, \
-		data->player.y * TILE_SIZE + (TILE_SIZE/2) + k + 2, color);
-		k++;
-	}
+	// mlx_pixel_put(data->mlx, data->win, data->player.x * TILE_SIZE, data->player.y * TILE_SIZE, player_color);
 }
 
 void move_player(t_data *data, int key)
 {
 	t_map	map;
+	int		new_x;
+	int		new_y;
+	int		new_angle;
 
 	map = *data->map;
+	new_x = 0;
+	new_y = 0;
+	new_angle = 0;
 	if (key == KEY_W)
 	{
-		data->player.y -= 1;
-		printf("W: %d %d %d\n", data->player.x, data->player.y, data->player.angle);
+		// data->player.y -= 1;
+		new_x = data->player.x;
+		new_y = data->player.y - 1;
+		new_angle = data->player.angle;
+		printf("W: %d %d %d\n", new_x, new_y, new_angle);
 	}
 	else if (key == KEY_A)
 	{
-		data->player.x -= 1;
-		printf("A: %d %d %d\n", data->player.x, data->player.y, data->player.angle);
+		// data->player.x -= 1;
+		new_x = data->player.x - 1;
+		new_y = data->player.y;
+		new_angle = data->player.angle;
+		printf("A: %d %d %d\n", new_x, new_y, new_angle);
 	}
 	else if (key == KEY_S)
 	{
-		data->player.y += 1;
-		printf("S: %d %d %d\n", data->player.x, data->player.y, data->player.angle);
+		// data->player.y += 1;
+		new_x = data->player.x;
+		new_y = data->player.y + 1;
+		new_angle = data->player.angle;
+		printf("S: %d %d %d\n", new_x, new_y, new_angle);
 	}
 	else if (key == KEY_D)
 	{
-		data->player.x += 1;
-		printf("D: %d %d %d\n", data->player.x, data->player.y, data->player.angle);
+		// data->player.x += 1;
+		new_x = data->player.x + 1;
+		new_y = data->player.y;
+		new_angle = data->player.angle;
+		printf("D: %d %d %d\n", new_x, new_y, new_angle);
 	}
 	else if (key == KEY_LEFT)
 	{
-		data->player.angle -= 15; // Rotate left by 15 degrees
-		if (data->player.angle < 0)
-			data->player.angle += 360;
-		printf("L: %d %d %d\n", data->player.x, data->player.y, data->player.angle);
+		// data->player.angle -= 15; // Rotate left by 15 degrees
+		// if (data->player.angle < 0)
+		// 	data->player.angle += 360;
+		new_x = data->player.x;
+		new_y = data->player.y;
+		new_angle = data->player.angle - 15; // Rotate left by 15 degrees
+		if (new_angle < 0)
+			new_angle += 360;
+
+		printf("L: %d %d %d\n", new_x, new_y, new_angle);
 	}
 	else if (key == KEY_RIGHT)
 	{
-		data->player.angle += 15; // Rotate right by 15 degrees
-		if (data->player.angle >= 360)
-			data->player.angle -= 360;
-		printf("R: %d %d %d\n", data->player.x, data->player.y, data->player.angle);
+		// data->player.angle += 15; // Rotate right by 15 degrees
+		// if (data->player.angle >= 360)
+		// 	data->player.angle -= 360;
+
+		new_angle = data->player.angle + 15; // Rotate right by 15 degrees
+		if (new_angle >= 360)
+			new_angle -= 360;
+
+		printf("R: %d %d %d\n", new_x, new_y, new_angle);
 	}
-	update_player(map, data);
+	update_player(data, new_x, new_y, new_angle);
 }
 
 
@@ -155,4 +160,51 @@ void move_player(t_data *data, int key)
 //     render(data, data->player, data->map);
 //     mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_ptr, 0, 0);
 //     return (0);
+// }
+
+// void update_player(t_map map, t_data *data)
+// {
+// 	// int 	i;
+// 	// int 	j;
+// 	int 	k;
+// 	int 	color;
+// 	t_map 	mapa;
+
+// 	mapa = map;
+
+// 	mlx_clear_window(data->mlx, data->win); // Clear the window before redrawing
+	
+
+
+// 	// i = 0;
+// 	k = 0;
+// 	// while (i < map.height)
+// 	// {
+// 	// 	j = 0;
+// 	// 	while (j < map.width)
+// 	// 	{
+// 	// 		if (map.map_data[i][j] == '1')
+// 	// 			color = create_trgb(0, 0, 10, 255); //0xFFFFFF
+// 	// 		else
+// 	// 		{
+// 	// 			color = create_trgb(0, 255, 50, 255); //0x00FF00
+// 	// 		}
+// 	// 		draw_square(data->mlx, data->win, j * TILE_SIZE, i * TILE_SIZE, color);
+// 	// 		j++;
+// 	// 	}
+// 	// 	i++;
+// 	// }
+// ft_printf("4x = %d, y = %d, angle = %d\n", data->player.x, data->player.y, data->player.angle);
+
+
+// 	color = create_trgb(0, 0, 0, 0);
+// 	mlx_pixel_put(data->mlx, data->win, data->player.x * TILE_SIZE + (TILE_SIZE/2), data->player.y * TILE_SIZE + (TILE_SIZE/2), color);
+
+// 	while (k < 10)
+// 	{
+// 		color = create_trgb(0, 255, 255, 0);
+// 		mlx_pixel_put(data->mlx, data->win,data->player.x * TILE_SIZE + (TILE_SIZE/2) + k + 2, \
+// 		data->player.y * TILE_SIZE + (TILE_SIZE/2) + k + 2, color);
+// 		k++;
+// 	}
 // }

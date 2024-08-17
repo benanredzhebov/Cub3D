@@ -119,6 +119,7 @@ void read_map(const char *filename, t_map *map);
 
 //screen.c
 void draw_square(void *mlx, void *win, int x, int y, int color);
+void draw_lil_square(void *mlx, void *win, int x, int y, int color);
 // void display_map(t_map map);
 void display_map(t_map map, t_data *data);
 // void display_map(char map[MAX_ROWS][MAX_COLS], int rows, int cols);
@@ -127,7 +128,8 @@ int close_window(void *param);
 //raycharles.c
 // int	is_wall(int x, int y, t_map *map);
 
-//player.
+//player.c
+void update_player(t_data *data, int new_x, int new_y, int new_angle);
 int	handle_key(int keycode, void *param);
 // int handle_key_press(int key, t_data *data);
 void move_player(t_data *data, int key);
