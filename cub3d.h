@@ -49,6 +49,12 @@
 #define KEY_LEFT 123
 #define KEY_RIGHT 124
 #define KEY_ESC 53
+
+#define SPEED 1
+#define PLAYER_SIZE 8
+
+
+
 #define FLOOR_CLR 16724735 // Pink
 #define CEILING_CLR 0x00FF00 // Green
 #define WALL_CLR 2815 // Blue
