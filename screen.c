@@ -91,7 +91,11 @@ void display_map(t_map map, t_data *data)
 		{
 // ft_printf("map.data[%d][%d] = %c\n", i, j, map.data[i][j]);
 			if (map.map_data[i][j] == '1')
-				color = create_trgb(0, 0, 10, 255); //0xFFFFFF
+			{
+				// color = create_trgb(0, 0, 0, 0); //0xFFFFFF
+				color = CYAN;
+				// printf("wall: %d\n", color);
+			}
 			else if (map.map_data[i][j] == 'E')
 			{
 // ft_printf("ENTROU EAST\n");
@@ -126,7 +130,9 @@ void display_map(t_map map, t_data *data)
 			else
 			{
 // ft_printf("ENTROU ELSE (0)\n");
-				color = create_trgb(0, 255, 50, 255); //0x00FF00
+				// color = create_trgb(0, 255, 50, 255); //0x00FF00
+				color = MAGENTA;
+				// printf("piso: %d\n", color);
 			}
 			draw_square(data->mlx, data->win, j * TILE_SIZE, i * TILE_SIZE, color);
 			j++;

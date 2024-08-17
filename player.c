@@ -2,12 +2,12 @@
 
 void update_player(t_data *data, int new_x, int new_y, int new_angle)
 {
-    int floor_color = create_trgb(0, 255, 50, 255); // Floor color
+    // int floor_color = create_trgb(0, 255, 50, 255); // Floor color
     // int player_color = create_trgb(0, 0, 0, 0); // Player color
 
     // Clear the previous player position
     draw_lil_square(data->mlx, data->win, data->player.x * TILE_SIZE + (TILE_SIZE/2), \
-	data->player.y * TILE_SIZE + (TILE_SIZE/2), floor_color);
+	data->player.y * TILE_SIZE + (TILE_SIZE/2), FLOOR_CLR);
 		// mlx_pixel_put(data->mlx, data->win, data->player.x * TILE_SIZE, data->player.y * TILE_SIZE, player_color);
 
     // Update the player's position
@@ -17,14 +17,23 @@ void update_player(t_data *data, int new_x, int new_y, int new_angle)
 
 
     // Draw the player at the new position
-    // draw_lil_square(data->mlx, data->win, data->player.x * TILE_SIZE + (TILE_SIZE/2), \
-	// data->player.y * TILE_SIZE + (TILE_SIZE/2), floor_color);
-
+    // draw_lil_square(data->mlx, data->win, data->player.x * TILE_SIZE + (TILE_SIZE/2) + 3, \
+	// data->player.y * TILE_SIZE + (TILE_SIZE/2) + 3, PLAYER_CLR);
+    draw_lil_square(data->mlx, data->win, data->player.x * TILE_SIZE + (TILE_SIZE/2), \
+	data->player.y * TILE_SIZE + (TILE_SIZE/2), PLAYER_CLR);
 
 
 	// mlx_pixel_put(data->mlx, data->win, data->player.x * TILE_SIZE, data->player.y * TILE_SIZE, player_color);
 }
-
+int	is_wall(int x, int y, t_map *map)
+{
+printf("x: %d y: %d map-width: %d map-height: %d map-data: %c\n", x, y, map->width, map->height, map->map_data[y][x]);
+	if (x < 0 || x > map->width || y < 0 || y >= map->height)
+		return (1);
+	if (map->map_data[y][x] == '1')
+		return (1);
+	return (0);
+}
 void move_player(t_data *data, int key)
 {
 	t_map	map;
@@ -33,67 +42,79 @@ void move_player(t_data *data, int key)
 	int		new_angle;
 
 	map = *data->map;
-	new_x = 0;
-	new_y = 0;
-	new_angle = 0;
+	new_x = data->player.x;
+	new_y = data->player.y;
+	new_angle = data->player.angle;
 	if (key == KEY_W)
 	{
-		// data->player.y -= 1;
-		new_x = data->player.x;
-		new_y = data->player.y - 1;
-		new_angle = data->player.angle;
+		if (!is_wall(data->player.x, data->player.y - 1, data->map))
+		{			
+			new_x = data->player.x;
+			new_y = data->player.y - 1;
+			new_angle = data->player.angle;
+			update_player(data, new_x, new_y, new_angle);
+		}
 		printf("W: %d %d %d\n", new_x, new_y, new_angle);
 	}
 	else if (key == KEY_A)
 	{
-		// data->player.x -= 1;
-		new_x = data->player.x - 1;
-		new_y = data->player.y;
-		new_angle = data->player.angle;
+		if (!is_wall(data->player.x - 1, data->player.y, data->map))
+		{
+			new_x = data->player.x - 1;
+			new_y = data->player.y;
+			new_angle = data->player.angle;
+			update_player(data, new_x, new_y, new_angle);
+		}
 		printf("A: %d %d %d\n", new_x, new_y, new_angle);
 	}
 	else if (key == KEY_S)
 	{
-		// data->player.y += 1;
-		new_x = data->player.x;
-		new_y = data->player.y + 1;
-		new_angle = data->player.angle;
+		if (!is_wall(data->player.x, data->player.y + 1, data->map))
+		{
+			new_x = data->player.x;
+			new_y = data->player.y + 1;
+			new_angle = data->player.angle;
+			update_player(data, new_x, new_y, new_angle);
+		}
 		printf("S: %d %d %d\n", new_x, new_y, new_angle);
 	}
 	else if (key == KEY_D)
 	{
-		// data->player.x += 1;
-		new_x = data->player.x + 1;
-		new_y = data->player.y;
-		new_angle = data->player.angle;
-		printf("D: %d %d %d\n", new_x, new_y, new_angle);
+		if (!is_wall(data->player.x + 1, data->player.y, data->map))
+		{
+			new_x = data->player.x + 1;
+			new_y = data->player.y;
+			new_angle = data->player.angle;
+			update_player(data, new_x, new_y, new_angle);
+		}
+		printf("S: %d %d %d\n", new_x, new_y, new_angle);
 	}
-	else if (key == KEY_LEFT)
-	{
-		// data->player.angle -= 15; // Rotate left by 15 degrees
-		// if (data->player.angle < 0)
-		// 	data->player.angle += 360;
-		new_x = data->player.x;
-		new_y = data->player.y;
-		new_angle = data->player.angle - 15; // Rotate left by 15 degrees
-		if (new_angle < 0)
-			new_angle += 360;
+	// else if (key == KEY_LEFT)
+	// {
+	// 	// data->player.angle -= 15; // Rotate left by 15 degrees
+	// 	// if (data->player.angle < 0)
+	// 	// 	data->player.angle += 360;
+	// 	new_x = data->player.x;
+	// 	new_y = data->player.y;
+	// 	new_angle = data->player.angle - 15; // Rotate left by 15 degrees
+	// 	if (new_angle < 0)
+	// 		new_angle += 360;
 
-		printf("L: %d %d %d\n", new_x, new_y, new_angle);
-	}
-	else if (key == KEY_RIGHT)
-	{
-		// data->player.angle += 15; // Rotate right by 15 degrees
-		// if (data->player.angle >= 360)
-		// 	data->player.angle -= 360;
+	// 	printf("L: %d %d %d\n", new_x, new_y, new_angle);
+	// }
+	// else if (key == KEY_RIGHT)
+	// {
+	// 	// data->player.angle += 15; // Rotate right by 15 degrees
+	// 	// if (data->player.angle >= 360)
+	// 	// 	data->player.angle -= 360;
 
-		new_angle = data->player.angle + 15; // Rotate right by 15 degrees
-		if (new_angle >= 360)
-			new_angle -= 360;
+	// 	new_angle = data->player.angle + 15; // Rotate right by 15 degrees
+	// 	if (new_angle >= 360)
+	// 		new_angle -= 360;
 
-		printf("R: %d %d %d\n", new_x, new_y, new_angle);
-	}
-	update_player(data, new_x, new_y, new_angle);
+	// 	printf("R: %d %d %d\n", new_x, new_y, new_angle);
+	// }
+	// update_player(data, new_x, new_y, new_angle);
 }
 
 

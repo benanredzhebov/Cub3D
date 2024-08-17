@@ -54,6 +54,7 @@ void read_map(const char *filename, t_map *map)
 
 	map->height = row;
 	map->width = max_cols;
+	printf("Map dimensions: %dx%d\n", map->width, map->height);
 
 	i = 0;
 	while (i < row)
