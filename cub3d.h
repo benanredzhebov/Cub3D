@@ -58,8 +58,8 @@
 
 //PLAYER CONFIG
 #define PLAYER_SIZE 4
-#define MOVE_SPEED 1
-#define ROT_SPEED 1
+#define MOVE_SPEED 50
+#define ROT_SPEED 15
 
 //GAME COLORS
 #define FLOOR_CLR MAGENTA
@@ -99,6 +99,61 @@ typedef struct s_data
 	t_map		*map;
 }	t_data;
 
+// cub3d_utils.c
+int				create_trgb(int t, int r, int g, int b);
+
+//map.c
+void 			read_map(const char *filename, t_map *map);
+
+//screen.c
+void			draw_square(t_data *data, void *win, int x, int y, int color);
+void			draw_lil_square(t_data *data, void *win, int x, int y, int color);
+int				close_window(void *param);
+unsigned int	get_pixel_color(t_data *data, int x, int y);
+void 			put_pixel_to_image(t_data *data, int x, int y, int color);
+void 			display_map(t_map map, t_data *data);
+
+//raycharles.c
+void			display_raycast(t_data *data);
+
+//player.c
+int				is_wall(int x, int y, t_data *data);
+void			update_player(t_data *data, int new_x, int new_y, int new_angle);
+int				handle_key(int keycode, void *param);
+void			move_player(t_data *data, int key);
+
+#endif // CUB3D_H
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// void read_map(const char *filename, char map[MAX_ROWS][MAX_COLS],int *rows, int *cols);
+
+// void draw_square(void *mlx, void *win, int x, int y, int color);
+// void display_map(t_map map);
+// void display_map(char map[MAX_ROWS][MAX_COLS], int rows, int cols);
+
+// int	is_wall(int x, int y, t_map *map);
+
+// int handle_key_press(int key, t_data *data);
+// void move_player(t_player *player, float move_speed, int direction, char **map);
+// void rotate_player(t_player *player, float rot_speed, int direction);
+// int key_press(int keycode, t_data *data);
+// void draw_line(void *mlx_ptr, void *win_ptr, int x0, int y0, int x1, int y1);
+// void render_player(t_data *data);
+// int main_loop(t_data *data);
+
 // typedef struct s_game
 // {
 // 	float px, py, pa; // Player position and angle
@@ -131,41 +186,3 @@ typedef struct s_data
 // 	int line_length;
 // 	int endian;
 // }	t_render_data;
-
-// cub3d_utils.c
-int	create_trgb(int t, int r, int g, int b);
-
-//map.c
-void read_map(const char *filename, t_map *map);
-// void read_map(const char *filename, char map[MAX_ROWS][MAX_COLS],int *rows, int *cols);
-
-//screen.c
-void			draw_square(t_data *data, void *win, int x, int y, int color);
-void			draw_lil_square(t_data *data, void *win, int x, int y, int color);
-int				close_window(void *param);
-unsigned int	get_pixel_color(t_data *data, int x, int y);
-void 			put_pixel_to_image(t_data *data, int x, int y, int color);
-void 			display_map(t_map map, t_data *data);
-// void draw_square(void *mlx, void *win, int x, int y, int color);
-// void display_map(t_map map);
-// void display_map(char map[MAX_ROWS][MAX_COLS], int rows, int cols);
-
-
-//raycharles.c
-void display_raycast(t_data *data);
-// int	is_wall(int x, int y, t_map *map);
-
-//player.c
-int is_wall(int x, int y, t_data *data);
-void update_player(t_data *data, int new_x, int new_y, int new_angle);
-int	handle_key(int keycode, void *param);
-// int handle_key_press(int key, t_data *data);
-void move_player(t_data *data, int key);
-// void move_player(t_player *player, float move_speed, int direction, char **map);
-// void rotate_player(t_player *player, float rot_speed, int direction);
-// int key_press(int keycode, t_data *data);
-// void draw_line(void *mlx_ptr, void *win_ptr, int x0, int y0, int x1, int y1);
-// void render_player(t_data *data);
-// int main_loop(t_data *data);
-
-#endif // CUB3D_H
