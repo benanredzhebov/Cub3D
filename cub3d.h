@@ -42,10 +42,10 @@
 #define MAX_COLS MAX_ROWS + 1
 
 //PLAYER START ANGLES
-#define NORTH 0
-#define EAST 45
+#define NORTH 270
+#define EAST 0
 #define SOUTH 90
-#define WEST 135
+#define WEST 180
 
 //KEY DEFINITIONS
 #define KEY_W 13
@@ -57,7 +57,7 @@
 #define KEY_ESC 53
 
 //PLAYER CONFIG
-#define SPEED TILE_SIZE/2
+#define SPEED 1
 #define PLAYER_SIZE 4
 #define MOVE_SPEED 0.1
 #define ROT_SPEED 0.05
@@ -67,6 +67,9 @@
 #define CEILING_CLR GREEN
 #define WALL_CLR CYAN
 #define PLAYER_CLR WHITE
+
+//MATH CONSTANTS
+#define DEG2RAD M_PI / 180.0
 
 typedef struct s_player
 {

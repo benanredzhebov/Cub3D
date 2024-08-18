@@ -19,8 +19,8 @@
 void display_raycast(t_data *data)
 {
     // Calculate the ray's direction using player's position and angle directly from data
-    double ray_dir_x = cos(data->player.angle);
-    double ray_dir_y = sin(data->player.angle);
+    double ray_dir_x = cos((data->player.angle) * DEG2RAD);
+    double ray_dir_y = sin((data->player.angle) * DEG2RAD);
 
     // Current position of the ray
     double ray_x = data->player.x;
@@ -76,9 +76,6 @@ void display_raycast(t_data *data)
             side_dist_y += delta_dist_y;
             map_y += step_y;
         }
-
-        // Debugging statement to check the values of map_x and map_y
-        printf("Current map_x: %d, Current map_y: %d\n", map_x, map_y);
     }
 }
 
