@@ -60,6 +60,8 @@
 #define PLAYER_SIZE 4
 #define MOVE_SPEED 50
 #define ROT_SPEED 15
+#define FOV 30.0 // Field of view in degrees
+#define NUM_RAYS 600 // Number of rays to cast
 
 //GAME COLORS
 #define FLOOR_CLR MAGENTA
