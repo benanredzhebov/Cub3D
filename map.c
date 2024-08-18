@@ -54,12 +54,13 @@ void read_map(const char *filename, t_map *map)
 
 	map->height = row * TILE_SIZE;
 	map->width = max_cols * TILE_SIZE;
-	printf("Map dimensions: %dx%d\n", map->width, map->height);
+// printf("Map dimensions: %dx%d\n", map->width, map->height);
 
 	i = 0;
 	while (i < row)
 	{
-		printf("%s\n", map->map_data[i]);
+		// TO PRINT READ MAP DEBUGGING
+		// printf("%s\n", map->map_data[i]);
 		int j = 0;
 		while (j < max_cols)
 		{

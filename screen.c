@@ -116,13 +116,13 @@ void draw_lil_square(t_data *data, void *win, int x, int y, int color)
 	}
 }
 
-int handle_key(int key, void *param)
+int handle_key(int key, void *data)
 {
 	if (key == KEY_ESC)
-		close_window(param);
+		close_window(data);
 	if (key == KEY_A || key == KEY_D || key == KEY_W || key == KEY_S \
 		|| key == KEY_LEFT || key == KEY_RIGHT)
-		move_player(param, key);
+		move_player(data, key);
 	return (0);
 }
 void display_map(t_map map, t_data *data)
@@ -176,25 +176,12 @@ void display_map(t_map map, t_data *data)
 		i++;
 	}
 
-	// draw_lil_square(data->mlx, data->win, data->player.x * TILE_SIZE + (TILE_SIZE/2), \
-	// data->player.y * TILE_SIZE + (TILE_SIZE/2), WHITE);
-
-	// mlx_pixel_put(data->mlx, data->win, data->player.x, data->player.y, BLACK);
-	// 	mlx_pixel_put(data->mlx, data->win, data->player.x + 1, data->player.y, BLACK);
-	// 		mlx_pixel_put(data->mlx, data->win, data->player.x, data->player.y + 1, BLACK);
-	// 			mlx_pixel_put(data->mlx, data->win, data->player.x + 1, data->player.y + 1, BLACK);
-
 	data->player.x = data->player.x  + (TILE_SIZE / 2);
 	data->player.y = data->player.y  + (TILE_SIZE / 2);
 
 	draw_lil_square(data->mlx, data->win, data->player.x - (PLAYER_SIZE / 2), data->player.y - (PLAYER_SIZE / 2), PLAYER_CLR);
 	data->player.x = data->player.x - (PLAYER_SIZE / 2);
 	data->player.y = data->player.y - (PLAYER_SIZE / 2);
-
-	// mlx_pixel_put(data->mlx, data->win, data->player.x, data->player.y, WHITE);
-	// 	mlx_pixel_put(data->mlx, data->win, data->player.x + 1, data->player.y, WHITE);
-	// 		mlx_pixel_put(data->mlx, data->win, data->player.x, data->player.y + 1, WHITE);
-	// 			mlx_pixel_put(data->mlx, data->win, data->player.x + 1, data->player.y + 1, WHITE);
 
 	mlx_hook(data->win, 17, 0, close_window, data->mlx);
 	mlx_key_hook(data->win, handle_key, data);

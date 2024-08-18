@@ -88,13 +88,13 @@ typedef struct s_data
 {
 	void		*mlx;
 	void		*win;
-	t_player	player;
-	t_map		*map;
 	void 		*img;
 	char 		*addr;
 	int 		bits_per_pixel;
 	int 		line_length;
 	int 		endian;
+	t_player	player;
+	t_map		*map;
 }	t_data;
 
 // typedef struct s_game
@@ -138,16 +138,19 @@ void read_map(const char *filename, t_map *map);
 // void read_map(const char *filename, char map[MAX_ROWS][MAX_COLS],int *rows, int *cols);
 
 //screen.c
+void			draw_square(t_data *data, void *win, int x, int y, int color);
+void			draw_lil_square(t_data *data, void *win, int x, int y, int color);
+int				close_window(void *param);
+unsigned int	get_pixel_color(t_data *data, int x, int y);
+void 			put_pixel_to_image(t_data *data, int x, int y, int color);
+void 			display_map(t_map map, t_data *data);
 // void draw_square(void *mlx, void *win, int x, int y, int color);
-void draw_square(t_data *data, void *win, int x, int y, int color);
-void draw_lil_square(t_data *data, void *win, int x, int y, int color);
 // void display_map(t_map map);
-void display_map(t_map map, t_data *data);
 // void display_map(char map[MAX_ROWS][MAX_COLS], int rows, int cols);
-int close_window(void *param);
-unsigned int get_pixel_color(t_data *data, int x, int y);
+
 
 //raycharles.c
+void display_raycast(t_data *data);
 // int	is_wall(int x, int y, t_map *map);
 
 //player.c

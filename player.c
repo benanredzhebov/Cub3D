@@ -13,7 +13,7 @@ void move_player(t_data *data, int key)
 	new_y = data->player.y;
 	new_angle = data->player.angle;
 
-printf("DATA: data->player.x: %d data->player.y: %d\n", data->player.x, data->player.y);
+// printf("DATA: data->player.x: %d data->player.y: %d\n", data->player.x, data->player.y);
 	if (key == KEY_A)
 	{
 		if (!is_wall(data->player.x - 1, data->player.y, data))
@@ -26,7 +26,7 @@ printf("DATA: data->player.x: %d data->player.y: %d\n", data->player.x, data->pl
 			else
 				new_x = data->player.x - (w - 1);
 		}
-		printf("A: %d %d %d\n", new_x, new_y, new_angle);
+		// printf("A: %d %d %d\n", new_x, new_y, new_angle);
 	}
 	else if (key == KEY_W)
 	{
@@ -40,7 +40,7 @@ printf("DATA: data->player.x: %d data->player.y: %d\n", data->player.x, data->pl
 			else
 				new_y = data->player.y - (w - 1);
 		}
-		printf("W: %d %d %d\n", new_x, new_y, new_angle);
+		// printf("W: %d %d %d\n", new_x, new_y, new_angle);
 	}
 	else if (key == KEY_D)
 	{
@@ -54,7 +54,7 @@ printf("DATA: data->player.x: %d data->player.y: %d\n", data->player.x, data->pl
 			else
 				new_x = data->player.x + w;
 		}
-		printf("D: %d %d %d\n", new_x, new_y, new_angle);
+		// printf("D: %d %d %d\n", new_x, new_y, new_angle);
 	}
 	else if (key == KEY_S)
 	{
@@ -68,7 +68,7 @@ printf("DATA: data->player.x: %d data->player.y: %d\n", data->player.x, data->pl
 			else
 				new_y = data->player.y + w;
 		}
-		printf("S: %d %d %d\n", new_x, new_y, new_angle);
+		// printf("S: %d %d %d\n", new_x, new_y, new_angle);
 	}
 	// else if (key == KEY_LEFT)
 	// {
@@ -110,6 +110,9 @@ void update_player(t_data *data, int new_x, int new_y, int new_angle)
 
 	// Draw the player at the new position
 	draw_lil_square(data->mlx, data->win, data->player.x, data->player.y, PLAYER_CLR);
+
+	// Display the raycast image
+	display_raycast(data);
 }
 
 int is_wall(int x, int y, t_data *data)

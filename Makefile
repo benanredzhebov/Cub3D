@@ -46,8 +46,6 @@ clean:
 	@rm -rf $(OBJDIR)
 
 fclean: clean
-	@# @$(MAKE) -C $(LIBFT_DIR) fclean
-	@# @$(MAKE) -C $(FT_PRINTF_DIR) fclean
 	@$(MAKE) -C $(LIBFT_DIR) fclean
 	@$(MAKE) -C $(FT_PRINTF_DIR) fclean
 	@rm -f $(NAME)
