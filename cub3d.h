@@ -50,8 +50,8 @@
 #define KEY_RIGHT 124
 #define KEY_ESC 53
 
-#define SPEED 1
-#define PLAYER_SIZE 8
+#define SPEED 10
+#define PLAYER_SIZE 4
 
 
 
@@ -153,11 +153,11 @@ typedef struct s_data
 	void		*win;
 	t_player	player;
 	t_map		*map;
-	// void	*img_ptr;
-	// char	*data_addr;
-	// int		bpp;
-	// int		size_line;
-	// int		endian;
+	void *img;
+	char *addr;
+	int bits_per_pixel;
+	int line_length;
+	int endian;
 }	t_data;
 
 typedef struct s_ray_data
@@ -192,17 +192,20 @@ void read_map(const char *filename, t_map *map);
 // void read_map(const char *filename, char map[MAX_ROWS][MAX_COLS],int *rows, int *cols);
 
 //screen.c
-void draw_square(void *mlx, void *win, int x, int y, int color);
-void draw_lil_square(void *mlx, void *win, int x, int y, int color);
+// void draw_square(void *mlx, void *win, int x, int y, int color);
+void draw_square(t_data *data, void *win, int x, int y, int color);
+void draw_lil_square(t_data *data, void *win, int x, int y, int color);
 // void display_map(t_map map);
 void display_map(t_map map, t_data *data);
 // void display_map(char map[MAX_ROWS][MAX_COLS], int rows, int cols);
 int close_window(void *param);
+unsigned int get_pixel_color(t_data *data, int x, int y);
 
 //raycharles.c
 // int	is_wall(int x, int y, t_map *map);
 
 //player.c
+int is_wall(int x, int y, t_data *data);
 void update_player(t_data *data, int new_x, int new_y, int new_angle);
 int	handle_key(int keycode, void *param);
 // int handle_key_press(int key, t_data *data);

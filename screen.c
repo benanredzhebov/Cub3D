@@ -12,30 +12,107 @@
 
 #include "cub3d.h"
 
-void draw_square(void *mlx, void *win, int x, int y, int color)
+unsigned int get_pixel_color(t_data *data, int x, int y)
 {
+    if (data == NULL || data->addr == NULL)
+    {
+        fprintf(stderr, "Error: data or data->addr is NULL\n");
+        return 0;
+    }
+
+    // Calculate the actual pixel dimensions
+    int image_width = data->map->width * TILE_SIZE;
+    int image_height = data->map->height * TILE_SIZE;
+
+    // Ensure coordinates are within bounds
+    if (x < 0 || x >= image_width || y < 0 || y >= image_height)
+    {
+        fprintf(stderr, "Error: Pixel coordinates out of bounds\n");
+        return 0;
+    }
+
+    // Ensure line_length and bits_per_pixel are correctly set
+    if (data->line_length <= 0 || data->bits_per_pixel <= 0)
+    {
+        fprintf(stderr, "Error: Invalid line_length or bits_per_pixel\n");
+        return 0;
+    }
+
+    // Calculate the position of the pixel in the image data
+    char *src = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+    return *(unsigned int*)src;
+}
+
+void put_pixel_to_image(t_data *data, int x, int y, int color)
+{
+    if (data == NULL || data->addr == NULL)
+    {
+        fprintf(stderr, "Error: data or data->addr is NULL\n");
+        return;
+    }
+
+    // Debugging output
+    // printf("Attempting to put pixel at (%d, %d) with color %d\n", x, y, color);
+    // printf("Image dimensions: width = %d, height = %d\n", data->map->width , data->map->height);
+
+    if (x < 0 || x >= data->map->width|| y < 0 || y >= data->map->height)
+    {
+        fprintf(stderr, "Error: Pixel coordinates out of bounds\n");
+        return;
+    }
+
+    // Ensure line_length and bits_per_pixel are correctly set
+    if (data->line_length <= 0 || data->bits_per_pixel <= 0)
+    {
+        fprintf(stderr, "Error: Invalid line_length or bits_per_pixel\n");
+        return;
+    }
+
+    char *dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+    *(unsigned int*)dst = color;
+}
+void draw_square(t_data *data, void *win, int x, int y, int color)
+{
+	// t_data *data_ptr;
+	// data_ptr = data;
+
 	int i = 0;
 	while (i < TILE_SIZE)
 	{
 		int j = 0;
 		while (j < TILE_SIZE)
 		{
-			mlx_pixel_put(mlx, win, x + i, y + j, color);
+			// mlx_pixel_put(data->mlx, win, x + i, y + j, color);
+
+
+
+            // if (x + i >= 0 && x + i < data->map->width && y + j >= 0 && y + j < data->map->height)
+            // {
+            //     put_pixel_to_image(data_ptr, x + i, y + j, color);
+            // }
+
+
+
+			put_pixel_to_image(data, x + i, y + j, color);
 			j++;
 		}
 		i++;
 	}
+	mlx_put_image_to_window(data->mlx, win, data->img, 0, 0);
 }
 
-void draw_lil_square(void *mlx, void *win, int x, int y, int color)
+void draw_lil_square(t_data *data, void *win, int x, int y, int color)
 {
 	int i = 0;
 	while (i < PLAYER_SIZE)
 	{
 		int j = 0;
 		while (j < PLAYER_SIZE)
-		{
-			mlx_pixel_put(mlx, win, x + i, y + j, color);
+		{	
+			if (i == 0 && j == 0)
+				mlx_pixel_put(data->mlx, win, x + i, y + j, BLACK);
+			else
+				mlx_pixel_put(data->mlx, win, x + i, y + j, color);
 			j++;
 		}
 		i++;
@@ -65,14 +142,16 @@ void display_map(t_map map, t_data *data)
 	data->player.y = 0;
 	data->player.angle = EAST;
 	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, map.width * TILE_SIZE, map.height * TILE_SIZE, "Cub3D");
+	data->img = mlx_new_image(data->mlx, data->map->width, data->map->height);
+	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
+	data->win = mlx_new_window(data->mlx, map.width, map.height, "Cub3D");
 	
 	i = 0;
 	k = 0;
-	while (i < map.height)
+	while (i < data->map->height / TILE_SIZE)
 	{
 		j = 0;
-		while (j < map.width)
+		while (j < data->map->width / TILE_SIZE)
 		{
 			if (map.map_data[i][j] == '1')
 				color = CYAN;
@@ -87,25 +166,39 @@ void display_map(t_map map, t_data *data)
 					data->player.angle = WEST;
 				else if (map.map_data[i][j] == 'S')
 					data->player.angle = SOUTH;
-			data->player.x = j;
-			data->player.y = i;
+			data->player.x = j * TILE_SIZE;
+			data->player.y = i * TILE_SIZE;
+			color = MAGENTA;
 			}
 			else
 				color = MAGENTA;
-			draw_square(data->mlx, data->win, j * TILE_SIZE, i * TILE_SIZE, color);
+
+// printf("JJJJJJJJJJJJJJJ: %d\n", j);
+			draw_square(data, data->win, j * TILE_SIZE, i * TILE_SIZE, color);
 			j++;
 		}
 		i++;
 	}
 
-	draw_lil_square(data->mlx, data->win, data->player.x * TILE_SIZE + (TILE_SIZE/2), \
-	data->player.y * TILE_SIZE + (TILE_SIZE/2), WHITE);
+	// draw_lil_square(data->mlx, data->win, data->player.x * TILE_SIZE + (TILE_SIZE/2), \
+	// data->player.y * TILE_SIZE + (TILE_SIZE/2), WHITE);
 
-printf("1.data->player.x: %d data->player.y: %d\n", data->player.x, data->player.y);
-	data->player.x = (data->player.x * TILE_SIZE) + (TILE_SIZE / 2);
-	data->player.y = (data->player.y * TILE_SIZE) + (TILE_SIZE / 2);
-	// draw_lil_square(data->mlx, data->win, data->player.x, data->player.y, BROWN);
-printf("2.data->player.x: %d data->player.y: %d\n", data->player.x, data->player.y);
+	// mlx_pixel_put(data->mlx, data->win, data->player.x, data->player.y, BLACK);
+	// 	mlx_pixel_put(data->mlx, data->win, data->player.x + 1, data->player.y, BLACK);
+	// 		mlx_pixel_put(data->mlx, data->win, data->player.x, data->player.y + 1, BLACK);
+	// 			mlx_pixel_put(data->mlx, data->win, data->player.x + 1, data->player.y + 1, BLACK);
+
+	data->player.x = data->player.x  + (TILE_SIZE / 2);
+	data->player.y = data->player.y  + (TILE_SIZE / 2);
+
+	draw_lil_square(data->mlx, data->win, data->player.x - (PLAYER_SIZE / 2), data->player.y - (PLAYER_SIZE / 2), WHITE);
+	data->player.x = data->player.x - (PLAYER_SIZE / 2);
+	data->player.y = data->player.y - (PLAYER_SIZE / 2);
+
+	// mlx_pixel_put(data->mlx, data->win, data->player.x, data->player.y, WHITE);
+	// 	mlx_pixel_put(data->mlx, data->win, data->player.x + 1, data->player.y, WHITE);
+	// 		mlx_pixel_put(data->mlx, data->win, data->player.x, data->player.y + 1, WHITE);
+	// 			mlx_pixel_put(data->mlx, data->win, data->player.x + 1, data->player.y + 1, WHITE);
 
 	mlx_hook(data->win, 17, 0, close_window, data->mlx);
 	mlx_key_hook(data->win, handle_key, data);

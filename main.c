@@ -24,6 +24,7 @@ int	main(int argc, char *argv[])
 		return (1);
 	}
 	read_map(argv[1], data.map);
+// printf("READ MAP\n");
 	display_map(map, &data);
 	return (0);
 }

@@ -4,6 +4,7 @@ void update_player(t_data *data, int new_x, int new_y, int new_angle)
 {
 	// Clear the previous player position
 	draw_lil_square(data->mlx, data->win, data->player.x, data->player.y, MAGENTA);
+	mlx_pixel_put(data->mlx, data->win, data->player.x, data->player.y, MAGENTA);
 
 	// Update the player's position
 	data->player.x = new_x;
@@ -14,15 +15,36 @@ void update_player(t_data *data, int new_x, int new_y, int new_angle)
 	draw_lil_square(data->mlx, data->win, data->player.x, data->player.y, WHITE);
 }
 
-int	is_wall(int x, int y, t_map *map)
+int is_wall(int x, int y, t_data *data)
 {
-printf("x: %d y: %d map-width: %d map-height: %d map-data: %c\n", x, y, map->width, map->height, map->map_data[y][x]);
-	if (x < 0 || x > map->width || y < 0 || y >= map->height)
+	if (get_pixel_color(data, x, y) == CYAN)
 		return (1);
-	if (map->map_data[y][x] == '1')
+	else if (get_pixel_color(data, x , y) == CYAN)
 		return (1);
-	return (0);
+	else
+		return (0);
+	// mlx_pixel_put(data->mlx, data->win, x, y, BLACK);
+    // unsigned int color = get_pixel_color(data, x, y);
+    // printf("Color of pixel at (%d, %d): %u\n", x, y, color);
+	// if (color == CYAN)
+	// 	return (1);
+	// else 
+	// 	return (0);
 }
+
+
+
+
+
+// int	is_wall(int x, int y, t_map *map)
+// {
+// printf("x: %d y: %d map-width: %d map-height: %d map-data: %c\n", x, y, map->width, map->height, map->map_data[y][x]);
+// 	if (x < 0 || x > map->width || y < 0 || y >= map->height)
+// 		return (1);
+// 	if (map->map_data[y][x] == '1')
+// 		return (1);
+// 	return (0);
+// }
 
 void move_player(t_data *data, int key)
 {
@@ -40,46 +62,34 @@ printf("3.data->player.x: %d data->player.y: %d\n", data->player.x, data->player
 
 	if (key == KEY_W)
 	{
-		if (!is_wall(data->player.x / TILE_SIZE, (data->player.y - PLAYER_SIZE) / TILE_SIZE, data->map))
+		if (!is_wall(data->player.x, data->player.y - (6 + SPEED), data))
 		{			
 		printf("1.W: %d %d %d\n", new_x, new_y, new_angle);
-			// new_x = data->player.x;
-			new_y = data->player.y - PLAYER_SIZE;
-			// new_angle = data->player.angle;
-			// update_player(data, new_x, new_y, new_angle);
+			new_y = data->player.y - (PLAYER_SIZE + SPEED);
 		}
 		printf("2.W: %d %d %d\n", new_x, new_y, new_angle);
 	}
 	else if (key == KEY_A)
 	{
-		if (!is_wall((data->player.x - PLAYER_SIZE) / TILE_SIZE, data->player.y / TILE_SIZE, data->map))
+		if (!is_wall(data->player.x - 6, data->player.y, data))
 		{
 			new_x = data->player.x - PLAYER_SIZE;
-			// new_y = data->player.y;
-			// new_angle = data->player.angle;
-			// update_player(data, new_x, new_y, new_angle);
 		}
 		printf("A: %d %d %d\n", new_x, new_y, new_angle);
 	}
 	else if (key == KEY_S)
 	{
-		if (!is_wall(data->player.x / TILE_SIZE, (data->player.y + PLAYER_SIZE) / TILE_SIZE, data->map))
+		if (!is_wall(data->player.x, data->player.y + PLAYER_SIZE + 5, data))
 		{
-			// new_x = data->player.x;
 			new_y = data->player.y + PLAYER_SIZE;
-			// new_angle = data->player.angle;
-			// update_player(data, new_x, new_y, new_angle);
 		}
 		printf("S: %d %d %d\n", new_x, new_y, new_angle);
 	}
 	else if (key == KEY_D)
 	{
-		if (!is_wall((data->player.x + PLAYER_SIZE) / TILE_SIZE, data->player.y / TILE_SIZE, data->map))
+		if (!is_wall(data->player.x + PLAYER_SIZE + 5, data->player.y, data))
 		{
 			new_x = data->player.x + PLAYER_SIZE;
-			// new_y = data->player.y;
-			// new_angle = data->player.angle;
-			// update_player(data, new_x, new_y, new_angle);
 		}
 		printf("S: %d %d %d\n", new_x, new_y, new_angle);
 	}

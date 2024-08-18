@@ -52,8 +52,8 @@ void read_map(const char *filename, t_map *map)
 		free(line); // Free the line allocated by GNL
 	}
 
-	map->height = row;
-	map->width = max_cols;
+	map->height = row * TILE_SIZE;
+	map->width = max_cols * TILE_SIZE;
 	printf("Map dimensions: %dx%d\n", map->width, map->height);
 
 	i = 0;
