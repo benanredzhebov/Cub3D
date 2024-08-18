@@ -84,22 +84,16 @@ void move_player(t_data *data, int key)
 	}
 	else if (key == KEY_LEFT)
 	{
-		// data->player.angle -= 15; // Rotate left by 15 degrees
-		// if (data->player.angle < 0)
-		// 	data->player.angle += 360;
 		new_x = data->player.x;
 		new_y = data->player.y;
-		new_angle = data->player.angle - ROT_SPEED; // Rotate left by 15 degrees
+		new_angle = data->player.angle - ROT_SPEED;
 		if (new_angle < 0)
 			new_angle += 360;
 		// printf("L: %d %d %d\n", new_x, new_y, new_angle);
 	}
 	else if (key == KEY_RIGHT)
 	{
-		// data->player.angle += 15; // Rotate right by 15 degrees
-		// if (data->player.angle >= 360)
-		// 	data->player.angle -= 360;
-		new_angle = data->player.angle + ROT_SPEED; // Rotate right by 15 degrees
+		new_angle = data->player.angle + ROT_SPEED;
 		if (new_angle >= 360)
 			new_angle -= 360;
 		// printf("R: %d %d %d\n", new_x, new_y, new_angle);
@@ -120,6 +114,9 @@ void update_player(t_data *data, int new_x, int new_y, int new_angle)
 
 	// Draw the player at the new position
 	draw_lil_square(data->mlx, data->win, data->player.x, data->player.y, PLAYER_CLR);
+
+	// Clear the previous raycast image
+	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 
 	// Display the raycast image
 	display_raycast(data);
