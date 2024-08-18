@@ -57,10 +57,9 @@
 #define KEY_ESC 53
 
 //PLAYER CONFIG
-#define SPEED 1
 #define PLAYER_SIZE 4
-#define MOVE_SPEED 0.1
-#define ROT_SPEED 0.05
+#define MOVE_SPEED 1
+#define ROT_SPEED 1
 
 //GAME COLORS
 #define FLOOR_CLR MAGENTA

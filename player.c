@@ -33,8 +33,8 @@ void move_player(t_data *data, int key)
 			w = 0;
 			while (!is_wall(data->player.x - w, data->player.y, data))
 				w++;
-			if (w > SPEED)
-				new_x = data->player.x - SPEED;
+			if (w > MOVE_SPEED)
+				new_x = data->player.x - MOVE_SPEED;
 			else
 				new_x = data->player.x - (w - 1);
 		}
@@ -47,8 +47,8 @@ void move_player(t_data *data, int key)
 			w = 0;
 			while (!is_wall(data->player.x, data->player.y - w, data))
 				w++;
-			if (w > SPEED)
-				new_y = data->player.y - SPEED;
+			if (w > MOVE_SPEED)
+				new_y = data->player.y - MOVE_SPEED;
 			else
 				new_y = data->player.y - (w - 1);
 		}
@@ -61,8 +61,8 @@ void move_player(t_data *data, int key)
 			w = 0;
 			while (!is_wall(data->player.x + PLAYER_SIZE + w, data->player.y, data))
 				w++;
-			if (w > SPEED)
-				new_x = data->player.x + SPEED;
+			if (w > MOVE_SPEED)
+				new_x = data->player.x + MOVE_SPEED;
 			else
 				new_x = data->player.x + w;
 		}
@@ -75,37 +75,35 @@ void move_player(t_data *data, int key)
 			w = 0;
 			while (!is_wall(data->player.x, data->player.y + PLAYER_SIZE + w, data))
 				w++;
-			if (w > SPEED)
-				new_y = data->player.y + SPEED;
+			if (w > MOVE_SPEED)
+				new_y = data->player.y + MOVE_SPEED;
 			else
 				new_y = data->player.y + w;
 		}
 		// printf("S: %d %d %d\n", new_x, new_y, new_angle);
 	}
-	// else if (key == KEY_LEFT)
-	// {
-	// 	// data->player.angle -= 15; // Rotate left by 15 degrees
-	// 	// if (data->player.angle < 0)
-	// 	// 	data->player.angle += 360;
-	// 	new_x = data->player.x;
-	// 	new_y = data->player.y;
-	// 	new_angle = data->player.angle - 15; // Rotate left by 15 degrees
-	// 	if (new_angle < 0)
-	// 		new_angle += 360;
-	// 	printf("L: %d %d %d\n", new_x, new_y, new_angle);
-	// }
-
-	// else if (key == KEY_RIGHT)
-	// {
-	// 	// data->player.angle += 15; // Rotate right by 15 degrees
-	// 	// if (data->player.angle >= 360)
-	// 	// 	data->player.angle -= 360;
-	// 	new_angle = data->player.angle + 15; // Rotate right by 15 degrees
-	// 	if (new_angle >= 360)
-	// 		new_angle -= 360;
-	// 	printf("R: %d %d %d\n", new_x, new_y, new_angle);
-	// }
-
+	else if (key == KEY_LEFT)
+	{
+		// data->player.angle -= 15; // Rotate left by 15 degrees
+		// if (data->player.angle < 0)
+		// 	data->player.angle += 360;
+		new_x = data->player.x;
+		new_y = data->player.y;
+		new_angle = data->player.angle - ROT_SPEED; // Rotate left by 15 degrees
+		if (new_angle < 0)
+			new_angle += 360;
+		// printf("L: %d %d %d\n", new_x, new_y, new_angle);
+	}
+	else if (key == KEY_RIGHT)
+	{
+		// data->player.angle += 15; // Rotate right by 15 degrees
+		// if (data->player.angle >= 360)
+		// 	data->player.angle -= 360;
+		new_angle = data->player.angle + ROT_SPEED; // Rotate right by 15 degrees
+		if (new_angle >= 360)
+			new_angle -= 360;
+		// printf("R: %d %d %d\n", new_x, new_y, new_angle);
+	}
 	update_player(data, new_x, new_y, new_angle);
 }
 
