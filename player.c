@@ -1,95 +1,72 @@
 #include "cub3d.h"
 
-void update_player(t_data *data, int new_x, int new_y, int new_angle)
-{
-	// Clear the previous player position
-	draw_lil_square(data->mlx, data->win, data->player.x, data->player.y, MAGENTA);
-	mlx_pixel_put(data->mlx, data->win, data->player.x, data->player.y, MAGENTA);
-
-	// Update the player's position
-	data->player.x = new_x;
-	data->player.y = new_y;
-	data->player.angle = new_angle;
-
-	// Draw the player at the new position
-	draw_lil_square(data->mlx, data->win, data->player.x, data->player.y, WHITE);
-}
-
-int is_wall(int x, int y, t_data *data)
-{
-	if (get_pixel_color(data, x, y) == CYAN)
-		return (1);
-	else if (get_pixel_color(data, x , y) == CYAN)
-		return (1);
-	else
-		return (0);
-	// mlx_pixel_put(data->mlx, data->win, x, y, BLACK);
-    // unsigned int color = get_pixel_color(data, x, y);
-    // printf("Color of pixel at (%d, %d): %u\n", x, y, color);
-	// if (color == CYAN)
-	// 	return (1);
-	// else 
-	// 	return (0);
-}
-
-
-
-
-
-// int	is_wall(int x, int y, t_map *map)
-// {
-// printf("x: %d y: %d map-width: %d map-height: %d map-data: %c\n", x, y, map->width, map->height, map->map_data[y][x]);
-// 	if (x < 0 || x > map->width || y < 0 || y >= map->height)
-// 		return (1);
-// 	if (map->map_data[y][x] == '1')
-// 		return (1);
-// 	return (0);
-// }
-
 void move_player(t_data *data, int key)
 {
 	t_map	map;
 	int		new_x;
 	int		new_y;
 	int		new_angle;
+	int		w;
 
 	map = *data->map;
 	new_x = data->player.x;
 	new_y = data->player.y;
 	new_angle = data->player.angle;
 
-printf("3.data->player.x: %d data->player.y: %d\n", data->player.x, data->player.y);
-
-	if (key == KEY_W)
+printf("DATA: data->player.x: %d data->player.y: %d\n", data->player.x, data->player.y);
+	if (key == KEY_A)
 	{
-		if (!is_wall(data->player.x, data->player.y - (6 + SPEED), data))
-		{			
-		printf("1.W: %d %d %d\n", new_x, new_y, new_angle);
-			new_y = data->player.y - (PLAYER_SIZE + SPEED);
-		}
-		printf("2.W: %d %d %d\n", new_x, new_y, new_angle);
-	}
-	else if (key == KEY_A)
-	{
-		if (!is_wall(data->player.x - 6, data->player.y, data))
+		if (!is_wall(data->player.x - 1, data->player.y, data))
 		{
-			new_x = data->player.x - PLAYER_SIZE;
+			w = 0;
+			while (!is_wall(data->player.x - w, data->player.y, data))
+				w++;
+			if (w > SPEED)
+				new_x = data->player.x - SPEED;
+			else
+				new_x = data->player.x - (w - 1);
 		}
 		printf("A: %d %d %d\n", new_x, new_y, new_angle);
 	}
-	else if (key == KEY_S)
+	else if (key == KEY_W)
 	{
-		if (!is_wall(data->player.x, data->player.y + PLAYER_SIZE + 5, data))
+		if (!is_wall(data->player.x, data->player.y - 1, data))
 		{
-			new_y = data->player.y + PLAYER_SIZE;
+			w = 0;
+			while (!is_wall(data->player.x, data->player.y - w, data))
+				w++;
+			if (w > SPEED)
+				new_y = data->player.y - SPEED;
+			else
+				new_y = data->player.y - (w - 1);
 		}
-		printf("S: %d %d %d\n", new_x, new_y, new_angle);
+		printf("W: %d %d %d\n", new_x, new_y, new_angle);
 	}
 	else if (key == KEY_D)
 	{
-		if (!is_wall(data->player.x + PLAYER_SIZE + 5, data->player.y, data))
+		if (!is_wall(data->player.x + PLAYER_SIZE + 1, data->player.y, data))
 		{
-			new_x = data->player.x + PLAYER_SIZE;
+			w = 0;
+			while (!is_wall(data->player.x + PLAYER_SIZE + w, data->player.y, data))
+				w++;
+			if (w > SPEED)
+				new_x = data->player.x + SPEED;
+			else
+				new_x = data->player.x + w;
+		}
+		printf("D: %d %d %d\n", new_x, new_y, new_angle);
+	}
+	else if (key == KEY_S)
+	{
+		if (!is_wall(data->player.x, data->player.y + PLAYER_SIZE + 1, data))
+		{
+			w = 0;
+			while (!is_wall(data->player.x, data->player.y + PLAYER_SIZE + w, data))
+				w++;
+			if (w > SPEED)
+				new_y = data->player.y + SPEED;
+			else
+				new_y = data->player.y + w;
 		}
 		printf("S: %d %d %d\n", new_x, new_y, new_angle);
 	}
@@ -103,24 +80,45 @@ printf("3.data->player.x: %d data->player.y: %d\n", data->player.x, data->player
 	// 	new_angle = data->player.angle - 15; // Rotate left by 15 degrees
 	// 	if (new_angle < 0)
 	// 		new_angle += 360;
-
 	// 	printf("L: %d %d %d\n", new_x, new_y, new_angle);
 	// }
+
 	// else if (key == KEY_RIGHT)
 	// {
 	// 	// data->player.angle += 15; // Rotate right by 15 degrees
 	// 	// if (data->player.angle >= 360)
 	// 	// 	data->player.angle -= 360;
-
 	// 	new_angle = data->player.angle + 15; // Rotate right by 15 degrees
 	// 	if (new_angle >= 360)
 	// 		new_angle -= 360;
-
 	// 	printf("R: %d %d %d\n", new_x, new_y, new_angle);
 	// }
+
 	update_player(data, new_x, new_y, new_angle);
 }
 
+void update_player(t_data *data, int new_x, int new_y, int new_angle)
+{
+	// Clear the previous player position
+	draw_lil_square(data->mlx, data->win, data->player.x, data->player.y, FLOOR_CLR);
+	mlx_pixel_put(data->mlx, data->win, data->player.x, data->player.y, FLOOR_CLR);
+
+	// Update the player's position
+	data->player.x = new_x;
+	data->player.y = new_y;
+	data->player.angle = new_angle;
+
+	// Draw the player at the new position
+	draw_lil_square(data->mlx, data->win, data->player.x, data->player.y, PLAYER_CLR);
+}
+
+int is_wall(int x, int y, t_data *data)
+{
+	if (get_pixel_color(data, x, y) == WALL_CLR)
+		return (1);
+	else
+		return (0);
+}
 
 
 

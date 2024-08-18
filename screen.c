@@ -14,62 +14,69 @@
 
 unsigned int get_pixel_color(t_data *data, int x, int y)
 {
-    if (data == NULL || data->addr == NULL)
-    {
-        fprintf(stderr, "Error: data or data->addr is NULL\n");
-        return 0;
-    }
+	int image_width;
+	int image_height;
 
-    // Calculate the actual pixel dimensions
-    int image_width = data->map->width * TILE_SIZE;
-    int image_height = data->map->height * TILE_SIZE;
+	if (data == NULL || data->addr == NULL)
+	{
+		fprintf(stderr, "Error: data or data->addr is NULL\n");
+		return 0;
+	}
 
-    // Ensure coordinates are within bounds
-    if (x < 0 || x >= image_width || y < 0 || y >= image_height)
-    {
-        fprintf(stderr, "Error: Pixel coordinates out of bounds\n");
-        return 0;
-    }
+	// Calculate the actual pixel dimensions
+	image_width = data->map->width * TILE_SIZE;
+	image_height = data->map->height * TILE_SIZE;
 
-    // Ensure line_length and bits_per_pixel are correctly set
-    if (data->line_length <= 0 || data->bits_per_pixel <= 0)
-    {
-        fprintf(stderr, "Error: Invalid line_length or bits_per_pixel\n");
-        return 0;
-    }
+	// Ensure coordinates are within bounds
+	if (x < 0 || x >= image_width || y < 0 || y >= image_height)
+	{
+		fprintf(stderr, "Error: Pixel coordinates out of bounds\n");
+		return 0;
+	}
 
-    // Calculate the position of the pixel in the image data
-    char *src = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-    return *(unsigned int*)src;
+	// Ensure line_length and bits_per_pixel are correctly set
+	if (data->line_length <= 0 || data->bits_per_pixel <= 0)
+	{
+		fprintf(stderr, "Error: Invalid line_length or bits_per_pixel\n");
+		return 0;
+	}
+
+	// Calculate the position of the pixel in the image data
+	char *src = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	return *(unsigned int*)src;
 }
 
 void put_pixel_to_image(t_data *data, int x, int y, int color)
 {
-    if (data == NULL || data->addr == NULL)
-    {
-        fprintf(stderr, "Error: data or data->addr is NULL\n");
-        return;
-    }
+	char *dst;
 
-    // Debugging output
-    // printf("Attempting to put pixel at (%d, %d) with color %d\n", x, y, color);
-    // printf("Image dimensions: width = %d, height = %d\n", data->map->width , data->map->height);
+	dst = NULL;
+	if (data == NULL || data->addr == NULL)
+	{
+		fprintf(stderr, "Error: data or data->addr is NULL\n");
+		return;
+	}
 
-    if (x < 0 || x >= data->map->width|| y < 0 || y >= data->map->height)
-    {
-        fprintf(stderr, "Error: Pixel coordinates out of bounds\n");
-        return;
-    }
+	// Debugging output
+	// printf("Attempting to put pixel at (%d, %d) with color %d\n", x, y, color);
+	// printf("Image dimensions: width = %d, height = %d\n", data->map->width , data->map->height);
 
-    // Ensure line_length and bits_per_pixel are correctly set
-    if (data->line_length <= 0 || data->bits_per_pixel <= 0)
-    {
-        fprintf(stderr, "Error: Invalid line_length or bits_per_pixel\n");
-        return;
-    }
+	if (x < 0 || x >= data->map->width|| y < 0 || y >= data->map->height)
+	{
+		fprintf(stderr, "Error: Pixel coordinates out of bounds\n");
+		return ;
+	}
 
-    char *dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-    *(unsigned int*)dst = color;
+	// Ensure line_length and bits_per_pixel are correctly set
+	if (data->line_length <= 0 || data->bits_per_pixel <= 0)
+	{
+		fprintf(stderr, "Error: Invalid line_length or bits_per_pixel\n");
+		return ;
+	}
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+	// char *dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	// *(unsigned int*)dst = color;
 }
 void draw_square(t_data *data, void *win, int x, int y, int color)
 {
@@ -83,16 +90,6 @@ void draw_square(t_data *data, void *win, int x, int y, int color)
 		while (j < TILE_SIZE)
 		{
 			// mlx_pixel_put(data->mlx, win, x + i, y + j, color);
-
-
-
-            // if (x + i >= 0 && x + i < data->map->width && y + j >= 0 && y + j < data->map->height)
-            // {
-            //     put_pixel_to_image(data_ptr, x + i, y + j, color);
-            // }
-
-
-
 			put_pixel_to_image(data, x + i, y + j, color);
 			j++;
 		}
@@ -154,7 +151,7 @@ void display_map(t_map map, t_data *data)
 		while (j < data->map->width / TILE_SIZE)
 		{
 			if (map.map_data[i][j] == '1')
-				color = CYAN;
+				color = WALL_CLR;
 			else if (map.map_data[i][j] == 'E' || map.map_data[i][j] == 'N' \
 				|| map.map_data[i][j] == 'W' || map.map_data[i][j] == 'S')
 			{
@@ -168,12 +165,11 @@ void display_map(t_map map, t_data *data)
 					data->player.angle = SOUTH;
 			data->player.x = j * TILE_SIZE;
 			data->player.y = i * TILE_SIZE;
-			color = MAGENTA;
+			color = FLOOR_CLR;
 			}
 			else
-				color = MAGENTA;
+				color = FLOOR_CLR;
 
-// printf("JJJJJJJJJJJJJJJ: %d\n", j);
 			draw_square(data, data->win, j * TILE_SIZE, i * TILE_SIZE, color);
 			j++;
 		}
@@ -191,7 +187,7 @@ void display_map(t_map map, t_data *data)
 	data->player.x = data->player.x  + (TILE_SIZE / 2);
 	data->player.y = data->player.y  + (TILE_SIZE / 2);
 
-	draw_lil_square(data->mlx, data->win, data->player.x - (PLAYER_SIZE / 2), data->player.y - (PLAYER_SIZE / 2), WHITE);
+	draw_lil_square(data->mlx, data->win, data->player.x - (PLAYER_SIZE / 2), data->player.y - (PLAYER_SIZE / 2), PLAYER_CLR);
 	data->player.x = data->player.x - (PLAYER_SIZE / 2);
 	data->player.y = data->player.y - (PLAYER_SIZE / 2);
 
@@ -216,20 +212,6 @@ int close_window(void *param)
 	return (0);
 }
 
-// void draw_textured_square(void *mlx, void *win, int x, int y, void *texture)
-// {
-// 	int i = 0;
-// 	while (i < TILE_SIZE)
-// 	{
-// 		int j = 0;
-// 		while (j < TILE_SIZE)
-// 		{
-// 			mlx_put_image_to_window(mlx, win, texture, x + i, y + j);
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// }
 
 
 

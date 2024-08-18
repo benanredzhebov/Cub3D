@@ -16,6 +16,7 @@
 #include "./libft/ft_printf/ft_printf.h"
 #include "./libft/gnl/get_next_line.h"
 #include "./libft/libft.h"
+#include "colors.h"
 
 # include <mlx.h>
 # include <math.h>
@@ -27,21 +28,26 @@
 
 # include <string.h>
 
-# define WIDTH 800
-# define HEIGHT 600
-# define TILE_SIZE 64
-# define MAP_WIDTH 10
-# define MAP_HEIGHT 10
-#define MAX_ROWS 100
-#define MAX_COLS MAX_ROWS + 1
+//WINDOW CONFIG
 #define WIN_WIDTH 800
 #define WIN_HEIGHT 600
-#define MOVE_SPEED 0.1
-#define ROT_SPEED 0.05
+#define WIDTH 800
+#define HEIGHT 600
+
+//MAP CONFIG
+# define MAP_WIDTH 10
+# define MAP_HEIGHT 10
+# define TILE_SIZE 64
+#define MAX_ROWS 100
+#define MAX_COLS MAX_ROWS + 1
+
+//PLAYER START ANGLES
 #define NORTH 0
 #define EAST 45
 #define SOUTH 90
 #define WEST 135
+
+//KEY DEFINITIONS
 #define KEY_W 13
 #define KEY_A 0
 #define KEY_S 1
@@ -50,94 +56,25 @@
 #define KEY_RIGHT 124
 #define KEY_ESC 53
 
-#define SPEED 10
+//PLAYER CONFIG
+#define SPEED TILE_SIZE/2
 #define PLAYER_SIZE 4
+#define MOVE_SPEED 0.1
+#define ROT_SPEED 0.05
 
-
-
-#define FLOOR_CLR 16724735 // Pink
-#define CEILING_CLR 0x00FF00 // Green
-#define WALL_CLR 2815 // Blue
-#define PLAYER_CLR 0xFFFF00 // Yellow
-#define BLACK 0 // Black
-#define WHITE 16777215 // White
-#define RED 16711680 // Red
-#define GREEN 65280 // Green
-#define BLUE 255
-#define YELLOW 16776960 // Yellow
-#define MAGENTA 16711808 // Magenta
-#define CYAN 65535 // Cyan
-#define GRAY 8421504 // Gray
-#define BROWN 8388608 // Brown
-#define ORANGE 16753920 // Orange
-#define PURPLE 8388736 // Purple
-#define LIGHTBLUE 15790320 // Light Blue
-#define LIGHTGRAY 10066329 // Light Gray
-#define DARKGRAY 4210752 // Dark Gray
-#define LIGHTGREEN 12632256 // Light Green
-#define LIGHTPURPLE 12615680 // Light Purple
-#define LIGHTRED 8388352 // Light Red
-#define LIGHTYELLOW 16777184 // Light Yellow
-#define DARKGREEN 32768 // Dark Green
-#define DARKPURPLE 32896 // Dark Purple
-#define DARKRED 32832 // Dark Red
-#define DARKYELLOW 32896 // Dark Yellow
-#define DARKBLUE 128 // Dark Blue
-#define DARKORANGE 8421376 // Dark Orange
-#define DARKBROWN 4210816 // Dark Brown
-#define DARKMAGENTA 4210688 // Dark Magenta
-#define DARKCYAN 4210703 // Dark Cyan
-#define DARKPINK 4210687 // Dark Pink
-#define DARKGRAY 4210752 // Dark Gray
-#define DARKLIGHTBLUE 4210943 // Dark Light Blue
-#define DARKLIGHTRED 4210815 // Dark Light Red
-#define DARKLIGHTGREEN 4210751 // Dark Light Green
-#define DARKLIGHTPURPLE 4210815 // Dark Light Purple
-#define DARKLIGHTYELLOW 4210815 // Dark Light Yellow
-#define DARKLIGHTORANGE 4210815 // Dark Light Orange
-#define DARKLIGHTBROWN 4210815 // Dark Light Brown
-#define DARKLIGHTMAGENTA 4210815 // Dark Light Magenta
-#define DARKLIGHTCYAN 4210815 // Dark Light Cyan
-#define DARKLIGHTPINK 4210815 // Dark Light Pink
-#define DARKLIGHTGRAY 4210815 // Dark Light Gray
-#define DARKDARKGREEN 4210815 // Dark Dark Green
-#define DARKDARKPURPLE 4210815 // Dark Dark Purple
-#define DARKDARKRED 4210815 // Dark Dark Red
-#define DARKDARKYELLOW 4210815 // Dark Dark Yellow
-#define DARKDARKBLUE 4210815 // Dark Dark Blue
-#define DARKDARKORANGE 4210815 // Dark Dark Orange
-#define DARKDARKBROWN 4210815 // Dark Dark Brown
-#define DARKDARKMAGENTA 4210815 // Dark Dark Magenta
-#define DARKDARKCYAN 4210815 // Dark Dark Cyan
-#define DARKDARKPINK 4210815 // Dark Dark Pink
-#define DARKDARKGRAY 4210815 // Dark Dark Gray
-
-
-
-
-
-
-
-// 2815 - azul
-// 0xFFFFFF - branco
-// 0x00FF00 - verde fluorescente
-// 16724735 - pink
-
-
-typedef struct s_game
-{
-	float px, py, pa; // Player position and angle
-	float pdx, pdy;  // Player direction
-	void *mlx_ptr;    // MiniLibX pointer
-	void *win_ptr;    // Window pointer
-	int *map;
-} t_game;
+//GAME COLORS
+#define FLOOR_CLR MAGENTA
+#define CEILING_CLR GREEN
+#define WALL_CLR CYAN
+#define PLAYER_CLR WHITE
 
 typedef struct s_player
 {
 	int		x;
 	int		y;
 	int		angle;
+	int		speed;
+	int		rot_speed;
 }	t_player;
 
 typedef struct s_map
@@ -153,36 +90,45 @@ typedef struct s_data
 	void		*win;
 	t_player	player;
 	t_map		*map;
-	void *img;
-	char *addr;
-	int bits_per_pixel;
-	int line_length;
-	int endian;
+	void 		*img;
+	char 		*addr;
+	int 		bits_per_pixel;
+	int 		line_length;
+	int 		endian;
 }	t_data;
 
-typedef struct s_ray_data
-{
-	float	ray_angle;
-	float	distance_to_wall;
-	int		hit_wall;
-	float	ray_pos_x;
-	float	ray_pos_y;
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
-	int		color;
-}	t_ray_data;
+// typedef struct s_game
+// {
+// 	float px, py, pa; // Player position and angle
+// 	float pdx, pdy;  // Player direction
+// 	void *mlx_ptr;    // MiniLibX pointer
+// 	void *win_ptr;    // Window pointer
+// 	int *map;
+// } t_game;
 
-typedef struct s_render_data
-{
-	void *mlx;
-	void *win;
-	void *img;
-	char *addr;
-	int bits_per_pixel;
-	int line_length;
-	int endian;
-}	t_render_data;
+// typedef struct s_ray_data
+// {
+// 	float	ray_angle;
+// 	float	distance_to_wall;
+// 	int		hit_wall;
+// 	float	ray_pos_x;
+// 	float	ray_pos_y;
+// 	int		line_height;
+// 	int		draw_start;
+// 	int		draw_end;
+// 	int		color;
+// }	t_ray_data;
+
+// typedef struct s_render_data
+// {
+// 	void *mlx;
+// 	void *win;
+// 	void *img;
+// 	char *addr;
+// 	int bits_per_pixel;
+// 	int line_length;
+// 	int endian;
+// }	t_render_data;
 
 // cub3d_utils.c
 int	create_trgb(int t, int r, int g, int b);
