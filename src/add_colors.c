@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 08:46:15 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/10 12:43:49 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/19 11:09:01 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ int	add_colors(t_data *data, char *line, int j)
 	{
 		data->col_ceiling = add_rgb(line + j + 1);
 		if (data->col_ceiling == 0)
-			return (print_error("Colors: Invalid F or C data"), FAILURE);
+			return (print_error("Colors: Invalid C data"), FAILURE);
 	}
 	else if (!data->col_floor && line[j] == 'F')
 	{

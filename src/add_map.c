@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:10:43 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/10 12:46:17 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/19 11:34:35 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	no_tabs(t_data *data)
 static int	retrieve_map_data(t_data *data, char **cub_file, int i)
 {
 	if (DEBUG)
-		printf("Map start Index: %d\n", i);
+		printf("Map start IDX: %d\n", i);
 	data->map->map_height = count_map_lines(data, cub_file, i);
 	if (DEBUG)
 		printf("Map height: %d\n", data->map->map_height);
@@ -107,12 +107,9 @@ int	add_map(t_data *data, char **cub_file, int i)
 {
 	int	j;
 
-	if (data->map == NULL)
-	{
-		data->map = malloc(sizeof(t_map));
-		if (!data->map)
-			return (print_error("Failed to allocate memory for map"), FAILURE);
-	}
+	data->map = malloc(sizeof(t_map));
+	if (!data->map)
+		return (print_error("Failed to allocation memory for map!"), FAILURE);
 	init_map(data->map);
 	if (retrieve_map_data(data, cub_file, i) == FAILURE)
 		return (FAILURE);

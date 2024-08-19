@@ -6,19 +6,19 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 11:34:15 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/10 12:35:34 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/19 11:36:26 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/raytracer.h"
 
-int	parsing(t_data *data, char **argv)
+int	parsing(t_data *data, char **av)
 {
 	char	**cub_file;
 
-	if (validate_cub_file(argv[1]) == FAILURE)
+	if (validate_cub_file(av[1]) == FAILURE)
 		exit(FAILURE);
-	save_cub(argv[1], data);
+	save_cub(av[1], data);
 	cub_file = data->cub_file;
 	if (retrieve_file_data(data, cub_file) == FAILURE)
 		return (FAILURE);
@@ -34,6 +34,8 @@ int	parsing(t_data *data, char **argv)
 		printf("East: %s\n", data->tex_east);
 	}
 	if (validate_map(data, data->map->map_data) == FAILURE)
+		return (FAILURE);
+	if (validate_textures(data) == FAILURE)
 		return (FAILURE);
 	add_player_direction(data);
 	return (SUCCESS);

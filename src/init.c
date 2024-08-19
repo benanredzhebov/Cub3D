@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 12:55:00 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/16 12:37:09 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/19 11:33:44 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void	init_data(t_data *data)
 	data->tex_size = TILE_SIZE;
 	data->col_ceiling = NULL;
 	data->col_floor = NULL;
+	data->col_ceiling_int = 0;
+	data->col_floor_int = 0;
 	data->tex_pixels = NULL;
 	data->textures = NULL;
 	data->mlx_ptr = NULL;

@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:18:20 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/10 12:39:13 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/19 11:34:54 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ If any condition fails, it prints an error message and returns
 static int	add_textures(t_data *data, char *line, int j)
 {
 	if (line[j + 2] && ft_isprint_no_space(line[j + 2]))
-		return (print_error("Textures: Invalid"), FAILURE);
+		return (print_error("Texture: invalid"), FAILURE);
 	if (line[j] == 'N' && line[j + 1] == 'O' && !(data->tex_north))
 		data->tex_north = add_tex_path(line, j + 2);
 	else if (line[j] == 'S' && line[j + 1] == 'O' && !(data->tex_south))
@@ -64,7 +64,7 @@ static int	add_textures(t_data *data, char *line, int j)
 	else if (line[j] == 'E' && line[j + 1] == 'A' && !(data->tex_east))
 		data->tex_east = add_tex_path(line, j + 2);
 	else
-		return (print_error("Textures: Invalid"), FAILURE);
+		return (print_error("Texture: invalid"), FAILURE);
 	return (SUCCESS);
 }
 
@@ -83,7 +83,7 @@ static int	skip_spaces(t_data *data, char **cub_file, int i, int j)
 			if (add_textures(data, cub_file[i], j) == FAILURE)
 				return (FAILURE);
 			return (TEXTURE_ADDED);
-		}
+		}	
 		else
 		{
 			if (add_colors(data, cub_file[i], j) == FAILURE)

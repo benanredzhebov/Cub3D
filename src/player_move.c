@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 12:29:23 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/16 12:56:32 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/19 08:56:15 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	move_player_forward(t_data *data)
 	double	new_y;
 
 	new_x = data->player_pos_x + data->player_dir_x * MOVESPEED;
-	new_x = data->player_pos_y + data->player_dir_y * MOVESPEED;
+	new_y = data->player_pos_y + data->player_dir_y * MOVESPEED;
 	return (validate_move(data, new_x, new_y));
 }
 
@@ -28,7 +28,7 @@ static int	move_player_backward(t_data *data)
 	double	new_y;
 
 	new_x = data->player_pos_x - data->player_dir_x * MOVESPEED;
-	new_x = data->player_pos_y - data->player_dir_y * MOVESPEED;
+	new_y = data->player_pos_y - data->player_dir_y * MOVESPEED;
 	return (validate_move(data, new_x, new_y));
 }
 
@@ -38,7 +38,7 @@ static int	move_player_left(t_data *data)
 	double	new_y;
 
 	new_x = data->player_pos_x + data->player_dir_y * MOVESPEED;
-	new_x = data->player_pos_y - data->player_dir_x * MOVESPEED;
+	new_y = data->player_pos_y - data->player_dir_x * MOVESPEED;
 	return (validate_move(data, new_x, new_y));
 }
 
@@ -48,7 +48,7 @@ static int	move_player_right(t_data *data)
 	double	new_y;
 
 	new_x = data->player_pos_x - data->player_dir_y * MOVESPEED;
-	new_x = data->player_pos_y + data->player_dir_x * MOVESPEED;
+	new_y = data->player_pos_y + data->player_dir_x * MOVESPEED;
 	return (validate_move(data, new_x, new_y));
 }
 

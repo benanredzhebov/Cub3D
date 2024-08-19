@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 09:08:58 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/10 12:40:17 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/19 10:37:52 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,9 @@ static int	check_map_elements(t_data *data, char **map)
 
 int	validate_map(t_data *data, char **map)
 {
-	if (!data->map)
+	if (!data->map->map_data)
 		return (print_error("Map:Not found"), FAILURE);
+	
 	if (data->map->map_height < 3)
 		return (print_error("Map: Should contain at least 3 lines"), FAILURE);
 	if (check_map_elements(data, map) == FAILURE)

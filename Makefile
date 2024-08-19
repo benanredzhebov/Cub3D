@@ -6,7 +6,7 @@
 #    By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/01 11:16:35 by beredzhe          #+#    #+#              #
-#    Updated: 2024/08/08 10:07:06 by beredzhe         ###   ########.fr        #
+#    Updated: 2024/08/19 13:38:43 by beredzhe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,12 +35,14 @@ ifeq ($(UNAME_S), Linux)
 MLX_DIR = ./minilibx-linux
 MLXLIB = $(MLX_DIR)/libmlx.a
 MLXFLAGS = -L$(MLX_DIR) -lmlx -lX11 -lXext -lm
+CFLAGS = -D__LINUX__
 
 # macOS
 else
 MLX_DIR = ./minilibx_opengl_20191021
 MLXLIB = $(MLX_DIR)/libmlx.a
 MLXFLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+CFLAGS = 
 endif
 # endif marks the end of a conditional block in a Makefile
 

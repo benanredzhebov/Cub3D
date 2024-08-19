@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 13:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/16 12:52:06 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/19 13:15:48 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # include "../libft/libft.h"
 
 //------------------DEBUG--------------
-# define DEBUG 0
+# define DEBUG 1
 
 //------------KEYBOARD MACROS----------
 
@@ -145,6 +145,8 @@ typedef struct s_data
 	int			cub_fd; // File descriptor for the .cub file
 	int			*col_ceiling; // RGB values for ceiling color
 	int			*col_floor; // RGB values for floor color
+	int			col_ceiling_int;
+	int			col_floor_int;
 }	t_data;
 
 // typedef struct s_player
@@ -198,6 +200,11 @@ int		parsing(t_data *data, char **argv);
 //---------validate_map.c----------
 int		validate_map(t_data *data, char **map);
 
+//-------validate_textures.c-------
+int	validate_textures(t_data *data);
+int	validate_xpm_file(char *filename);
+int	check_xpm_file_extension(char *filename);
+
 //---------add_player_dir.c--------
 void	add_player_direction(t_data *data);
 
@@ -240,11 +247,12 @@ int		dfs(t_data *data, char **map_clone);
 void	dfs_recursive(t_dfs *map_data, int r, int c);
 void	init_map_data(t_dfs *map_data, t_data *data, char **map_clone);
 
-//------------input.c--------------
-void	input(t_data *data);
+//--------get_input.c--------------
+void	get_input(t_data *data);
 
 //------------image.c--------------
 void	init_img(t_data *data, t_img *image, int width, int height);
+void	set_image_pixel(t_img *image, int x, int y, int color);
 
 //--------init_textures.c----------
 void	init_textures(t_data *data);
@@ -258,8 +266,11 @@ void	render_images(t_data *data);
 //--------player_move.c-----------
 int	move_player(t_data *data);
 
-//--------_player_rotate.c----------
+//---------player_rotate.c----------
 int rotate_player(t_data *data, double rotdir);
+
+//--------validate_move.c----------
+int	validate_move(t_data *data, double new_x, double new_y);
 
 //---------------------------------
 
