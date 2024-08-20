@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 13:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/19 13:15:48 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/20 13:44:15 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,12 @@ enum e_status
 /* this struct is used only temporary to check validity of the map*/
 typedef struct s_dfs
 {
-	char	**map;
-	int		h;
-	int		w;
-	int		valid;
-	int		dr[4];
-	int		dc[4];
+	char	**map; //2D arrayt representing the map
+	int		h; // Height of the map
+	int		w; // Width of the map
+	int		valid; // Flag indicating if the map is valid
+	int		dr[4]; // Array for row direction 
+	int		dc[4]; // Array for column direction
 }	t_dfs;
 
 typedef struct s_map
@@ -113,6 +113,27 @@ typedef struct s_img
 	int		size_line; // Size of a line in bytes
 	int		endian; //Endianess (0: little-endian, 1: big-endian)
 }	t_img;
+
+typedef struct s_ray
+{
+	double	camera_x;
+	double	dir_x;
+	double	dir_y;
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
+	double	sidedist_x;
+	double	sidedist_y;
+	double	deltadist_x;
+	double	deltadist_y;
+	double	wall_dist;
+	double	wall_x;
+	int		side;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+}	t_ray;
 
 typedef struct s_data
 {
@@ -147,6 +168,7 @@ typedef struct s_data
 	int			*col_floor; // RGB values for floor color
 	int			col_ceiling_int;
 	int			col_floor_int;
+	t_ray		ray;
 }	t_data;
 
 // typedef struct s_player
@@ -178,6 +200,9 @@ void	init_data_cub_map(t_data *data);
 void	init_map(t_map *map);
 void	init_data(t_data *data);
 void	init_img_null(t_img *img);
+
+//-----------init_ray.c------------
+void	init_ray(t_ray *ray);
 
 //------------utils.c--------------
 void	print_error(char *error_msg);

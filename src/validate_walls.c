@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:25:09 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/10 12:47:43 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/20 11:52:22 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,9 @@ int	dfs(t_data *data, char **map_clone)
 	return (map_data.valid);
 }
 
+/*function ensures that the map's walls are valid
+by checking the last character of each row and performing
+a DFS validation. It clones the map data for the DFS process.*/
 int	validate_walls(t_data *data)
 {
 	char	**map_clone;

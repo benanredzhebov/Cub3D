@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/21 13:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/20 11:07:33 by beredzhe         ###   ########.fr       */
+/*   Created: 2024/08/20 13:27:46 by beredzhe          #+#    #+#             */
+/*   Updated: 2024/08/20 13:41:49 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/raytracer.h"
 
-int	main(int argc, char **argv)
+void	init_ray(t_ray *ray)
 {
-	t_data	data;
-
-	if (argc != 2)
-		return (print_error("Usage: ./cub3d <path/to/map.cub>"), 1);
-	init_data(&data);
-	if (parsing(&data, argv) == FAILURE)
-		return (free_data(&data), FAILURE);
-	init_mlx(&data);
-	init_textures(&data);
-	render_images(&data);
-	get_input(&data);
-	mlx_loop_hook(data.mlx_ptr, render, &data);
-	mlx_loop(data.mlx_ptr);
-	return (free_data(&data), SUCCESS);
+	ray->camera_x = 0;
+	ray->dir_x = 0;
+	ray->dir_y = 0;
+	ray->map_x = 0;
+	ray->map_y = 0;
+	ray->step_x = 0;
+	ray->step_y = 0;
+	ray->sidedist_x = 0;
+	ray->sidedist_y = 0;
+	ray->deltadist_x = 0;
+	ray->deltadist_x = 0;
+	ray->wall_dist = 0;
+	ray->wall_x = 0;
+	ray->side = 0;
+	ray->line_height = 0;
+	ray->draw_start = 0;
+	ray->draw_end = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:14:38 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/19 17:42:34 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/20 11:10:28 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ void	set_image_pixel(t_img *image, int x, int y, int color)
 
 	pixel = y * (image->size_line / 4) + x;
 	image->addr[pixel] = color;
-	printf("size_line = %d\n", image->size_line);
 }
 
+/*initialize an image structure with a new image
+created using MiniLibx*/
 void	init_img(t_data *data, t_img *image, int width, int height)
 {
 	init_img_null(image);

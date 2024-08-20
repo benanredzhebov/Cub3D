@@ -6,12 +6,14 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 14:36:08 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/10 12:42:47 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/20 11:57:25 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/raytracer.h"
 
+/*duplicates a string, copying the original string into the allocated
+memory*/
 char	*ft_strdup2(const char *s1, int len)
 {
 	char	*copy;
@@ -23,6 +25,7 @@ char	*ft_strdup2(const char *s1, int len)
 	return (copy);
 }
 
+/*attempts to open a file in read-only mode*/
 int	open_file(char *filepath, t_data *data)
 {
 	int	fd;

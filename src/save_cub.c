@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 11:36:39 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/10 12:37:48 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/20 11:00:21 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	read_and_save_cub_file(int row, int col, int i, t_data *data)
 
 /* save following data to t_mapdata mapdata:
 1. path to file (using malloc)
-2. amt of lines
+2. number of lines in the .cub file
 3. all content of file as 2d array (using malloc)
 */
 void	save_cub(char *cub_path, t_data *data)

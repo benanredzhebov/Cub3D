@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:18:20 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/19 11:34:54 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/20 11:03:39 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static int	skip_spaces(t_data *data, char **cub_file, int i, int j)
 			if (add_textures(data, cub_file[i], j) == FAILURE)
 				return (FAILURE);
 			return (TEXTURE_ADDED);
-		}	
+		}
 		else
 		{
 			if (add_colors(data, cub_file[i], j) == FAILURE)

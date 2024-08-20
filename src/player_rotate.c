@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate_player.c                                    :+:      :+:    :+:   */
+/*   player_rotate.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 12:38:29 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/16 12:47:34 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/20 11:07:19 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	rotate_left_right(t_data *data, double rotspeed)
 	return (1);
 }
 
-int rotate_player(t_data *data, double rotdir)
+int	rotate_player(t_data *data, double rotdir)
 {
 	int		moved;
 	double	rotspeed;
@@ -39,4 +39,3 @@ int rotate_player(t_data *data, double rotdir)
 	moved += rotate_left_right(data, rotspeed);
 	return (moved);
 }
-

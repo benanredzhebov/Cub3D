@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 14:32:40 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/16 08:59:19 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/20 11:10:53 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	clean_exit(t_data *data, int exitstatus)
 		free_data(data);
 	exit(exitstatus);
 }
-
 
 int	quit_cub3d(t_data *data)
 {
