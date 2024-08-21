@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 13:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/20 13:44:15 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/21 14:41:04 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # include "../libft/libft.h"
 
 //------------------DEBUG--------------
-# define DEBUG 1
+# define DEBUG 0
 
 //------------KEYBOARD MACROS----------
 
@@ -116,23 +116,23 @@ typedef struct s_img
 
 typedef struct s_ray
 {
-	double	camera_x;
-	double	dir_x;
-	double	dir_y;
-	int		map_x;
-	int		map_y;
-	int		step_x;
-	int		step_y;
-	double	sidedist_x;
-	double	sidedist_y;
-	double	deltadist_x;
-	double	deltadist_y;
-	double	wall_dist;
-	double	wall_x;
-	int		side;
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
+	double	camera_x; // Camera position on the x-axis (right side 1,center 0, left side -1)
+	double	dir_x; // Direction vector x-component
+	double	dir_y; // Direction vector y-component
+	int		map_x; // Current x position in the map
+	int		map_y; // Current y position in the map
+	int		step_x; // Step direction in x (either +1 or -1)
+	int		step_y; // Step direction in y (either +1 or -1)
+	double	sidedist_x; // Distance to the next x-side
+	double	sidedist_y; // Distance to the next y-side
+	double	deltadist_x; // Distance between x-sides
+	double	deltadist_y; // Distance between y-sides
+	double	wall_dist; // Distance to the wall
+	double	wall_x; // Exact x-coordinate of the wall hit
+	int		side; // Was a NS or a EW wall hit
+	int		line_height; // Height of the line to draw on the screen
+	int		draw_start; // Start position of the line to draw
+	int		draw_end; // End position of the line to draw
 }	t_ray;
 
 typedef struct s_data
@@ -160,6 +160,11 @@ typedef struct s_data
 	char		*tex_south; //Path to the south texture
 	char		*tex_west; //Path to the west texture
 	int			tex_size; // Texture pixel. Im my case 128x128
+	int			tex_index;
+	double		tex_step;
+	double		tex_pos;
+	int			tex_x;
+	int			tex_y;
 	char		**cub_file; //Content of .cub file
 	char		*cub_path; // Path to the .cub file
 	int			cub_height; //Number of lines in the .cub file
@@ -170,13 +175,6 @@ typedef struct s_data
 	int			col_floor_int;
 	t_ray		ray;
 }	t_data;
-
-// typedef struct s_player
-// {
-// 	float	x;
-// 	float	y;
-// 	float	angle; //player dir
-// }	t_player;
 
 typedef struct s_render_data
 {
@@ -297,18 +295,12 @@ int rotate_player(t_data *data, double rotdir);
 //--------validate_move.c----------
 int	validate_move(t_data *data, double new_x, double new_y);
 
+//-------------ray.c---------------
+int	raycasting(t_data *data);
+
+//----------texture.c--------------
+void	update_texture_pixels(t_data *data, t_ray *ray, int x);
+
 //---------------------------------
 
-// void	load_map(const char *filename);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int		create_trgb(int t, int r, int g, int b);
-// int		is_wall(int x, int y, int map[HEIGHT][WIDTH]);
-// void	render(t_data *data, t_player *player, int map[MAP_HEIGHT][MAP_WIDTH]);
-// void	render(t_data *data, int map[data->map->map_height][data->map->map_width]);
-int		render(t_data *data);
-// int		key_press(int keycode, t_player *player, t_map *map);
-int		key_press(int keycode, t_data *data);
-// void	rotate_player(t_data *data, float rot_speed, int direction);
-int		main_loop(t_data *data);
-
-#endif // RAYTRACER_H
+#endif

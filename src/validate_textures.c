@@ -6,12 +6,13 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:07:12 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/19 09:35:06 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/21 10:24:23 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/raytracer.h"
 
+/*Converts an RGB color value into a single 24-bit integer*/
 static unsigned long	rgb_to_int(int *rgb_arr)
 {
 	int	r;
@@ -24,6 +25,8 @@ static unsigned long	rgb_to_int(int *rgb_arr)
 	return (((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff));
 }
 
+/*Check whether the RGB color values
+are within the valid range.*/
 static int	validate_rgb(int *rgb)
 {
 	int	i;
@@ -38,6 +41,8 @@ static int	validate_rgb(int *rgb)
 	return (SUCCESS);
 }
 
+/*check that given file name has the .xpm file
+extension.*/
 int	check_xpm_file_extension(char *filename)
 {
 	size_t	filename_length;
@@ -51,6 +56,8 @@ int	check_xpm_file_extension(char *filename)
 		return (FAILURE);
 }
 
+/*check if the file exists and is accessible and
+verify the file extension.*/
 int	validate_xpm_file(char *filename)
 {
 	int	fd;
@@ -64,6 +71,10 @@ int	validate_xpm_file(char *filename)
 	return (SUCCESS);
 }
 
+/*checking if all necessary textures and colors are properly
+set up in the game data. If one of these elements are missing
+or invalid, the function returns an error and fails the validation
+process.*/
 int	validate_textures(t_data *data)
 {
 	if (!data->tex_north

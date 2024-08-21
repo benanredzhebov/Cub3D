@@ -6,12 +6,14 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 12:38:29 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/20 11:07:19 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/21 11:18:47 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/raytracer.h"
 
+/*rotating a player's view and direction in a 2D plane for a
+3D simulation*/
 static int	rotate_left_right(t_data *data, double rotspeed)
 {
 	double		tmp_x;

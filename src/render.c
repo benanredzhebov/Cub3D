@@ -58,7 +58,7 @@ static void	render_frame(t_data *data)
 void	render_images(t_data *data)
 {
 	init_texture_pixels(data);
-	// raycasting(data);
+	raycasting(data);
 	render_frame(data);
 }
 
