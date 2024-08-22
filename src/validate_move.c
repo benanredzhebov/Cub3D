@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 08:45:38 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/21 14:45:36 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/22 12:01:52 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,14 @@
 bounds of the game map, ensuring it is not too close to the edges.*/
 static bool	is_valid_pos_in_map(t_data *data, double x, double y)
 {
-	// printf("Debug: x = %f, y = %f\n", x, y );
-	if (x < 0.25 || x >= data->map->map_width - 1.25)
+	/*if (x < 0.25 || x >= data->map->map_width - 1.25)
 		return (false);
 	if (y < 0.25 || y >= data->map->map_height -0.25)
+		return (false);
+	return (true);*/
+	if (x < 0 || x >= data->map->map_width * TILE_SIZE)
+		return (false);
+	if (y < 0 || y >= data->map->map_height * TILE_SIZE)
 		return (false);
 	return (true);
 }
