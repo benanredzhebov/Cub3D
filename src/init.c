@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 12:55:00 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/21 15:13:27 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/22 10:36:14 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,14 @@ void	init_data_player(t_data *data)
 
 void	init_data(t_data *data)
 {
-	t_map	*map;
 	init_data_cub_map(data);
 	init_data_player(data);
 	data->map = malloc(sizeof(t_map));
 	if (!data->map)
+	{
 		print_error("Failed to allocation memory for map!");
+		exit(FAILURE);
+	}
 	init_map(data->map);
 	data->tex_east = NULL;
 	data->tex_west = NULL;

@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 11:36:39 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/20 11:00:21 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/22 10:14:55 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,7 @@ void	read_and_save_cub_file(int row, int col, int i, t_data *data)
 		data->cub_file[row]
 			= ft_calloc(ft_strlen(line) + 1, sizeof(char));
 		if (!data->cub_file[row])
-			return (print_error("Memory allocation failed"), \
-			clean_exit(data, FAILURE));
+			return (print_error("Memory allocation failed"), clean_exit(data, FAILURE));
 		while (line[i] != '\0')
 			data->cub_file[row][col++] = line[i++];
 		data->cub_file[row++][col] = '\0';
@@ -104,15 +103,14 @@ void	save_cub(char *cub_path, t_data *data)
 	data->cub_file
 		= ft_calloc(data->cub_height + 1, sizeof(char *));
 	if (!(data->cub_file))
-		return (print_error("Memory allocation failed"), \
-		clean_exit(data, FAILURE));
+		return (print_error("Memory allocation failed"), clean_exit(data, FAILURE));
 	data->cub_path = cub_path;
 	if (DEBUG)
 		printf("\n.cub file contains %d lines\n", data->cub_height);
 	data->cub_fd = open_file(cub_path, data);
 	read_and_save_cub_file(row, col, i, data);
 	if (DEBUG)
-	{
+	{	
 		printf("\n------------- .cub ----------------\n");
 		print_array_2d(data->cub_file);
 		printf("\n-----------------------------------\n\n");

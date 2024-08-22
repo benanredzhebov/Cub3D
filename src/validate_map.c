@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 09:08:58 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/20 11:03:16 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/22 10:51:08 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ static int	check_map_elements(t_data *data, char **map)
 int	validate_map(t_data *data, char **map)
 {
 	if (!data->map->map_data)
-		return (print_error("Map:Not found"), FAILURE);
+		return (print_error("Map: Not found"), FAILURE);
 	if (data->map->map_height < 3)
 		return (print_error("Map: Should contain at least 3 lines"), FAILURE);
 	if (check_map_elements(data, map) == FAILURE)
@@ -115,7 +115,6 @@ int	validate_map(t_data *data, char **map)
 	if (add_player_position(data, map) == FAILURE)
 		return (FAILURE);
 	if (check_map_is_at_the_end(data) == FAILURE)
-		return (print_error("Map: Should be the last element in file"), \
-		FAILURE);
+		return (print_error("Map: Should be the last element in file"), FAILURE);
 	return (SUCCESS);
 }

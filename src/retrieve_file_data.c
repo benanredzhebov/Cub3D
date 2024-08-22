@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:18:20 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/20 11:03:39 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/22 10:41:55 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ If any condition fails, it prints an error message and returns
 static int	add_textures(t_data *data, char *line, int j)
 {
 	if (line[j + 2] && ft_isprint_no_space(line[j + 2]))
-		return (print_error("Texture: invalid"), FAILURE);
+		return (print_error("Textures: Invalid"), FAILURE);
 	if (line[j] == 'N' && line[j + 1] == 'O' && !(data->tex_north))
 		data->tex_north = add_tex_path(line, j + 2);
 	else if (line[j] == 'S' && line[j + 1] == 'O' && !(data->tex_south))
@@ -64,7 +64,7 @@ static int	add_textures(t_data *data, char *line, int j)
 	else if (line[j] == 'E' && line[j + 1] == 'A' && !(data->tex_east))
 		data->tex_east = add_tex_path(line, j + 2);
 	else
-		return (print_error("Texture: invalid"), FAILURE);
+		return (print_error("Textures: Invalid"), FAILURE);
 	return (SUCCESS);
 }
 

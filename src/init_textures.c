@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 10:07:44 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/19 12:00:59 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/22 09:27:03 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,29 +62,30 @@ static int	*xpm_to_img(t_data *data, char *path)
 {
 	t_img	tmp;
 	int		*buffer;
-	int		r;
-	int		c;
+	int		x;
+	int		y;
 
 	init_texture_img(data, &tmp, path);
 	buffer = ft_calloc(1,
 			sizeof * buffer * data->tex_size * data->tex_size);
 	if (!buffer)
 		clean_exit(data, FAILURE);
-	c = 0;
-	while (c < data->tex_size)
+	y = 0;
+	while (y < data->tex_size)
 	{
-		r = 0;
-		while (r < data->tex_size)
+		x = 0;
+		while (x < data->tex_size)
 		{
-			buffer[c * data->tex_size + r]
-				= tmp.addr[c * data->tex_size + r];
-			++r;
+			buffer[y * data->tex_size + x]
+				= tmp.addr[y * data->tex_size + x];
+			++x;
 		}
-		c++;
+		y++;
 	}
 	mlx_destroy_image(data->mlx_ptr, tmp.img);
 	return (buffer);
 }
+
 
 /*allocates memory for texture pointers, and
 then loads the textures from specified XPM files
