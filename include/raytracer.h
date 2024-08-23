@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 13:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/22 11:28:48 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/23 11:32:36 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@
 // # define MAP_WIDTH 10
 // # define MAP_HEIGHT 10
 
-# define MOVESPEED 0.04111 //0.02275
-# define ROTSPEED 0.015
+# define MOVESPEED 0.07000
+# define ROTSPEED 0.048
 
 enum e_texture_index
 {
@@ -97,12 +97,12 @@ typedef struct s_dfs
 
 typedef struct s_map
 {
-	int		win_width;
-	int		win_height;
-	int		map_width;
-	int		map_height;
+	int		win_width; // Width of the window
+	int		win_height; // Height of the window
+	int		map_width; // Width of the map (number of columns)
+	int		map_height; // Height of the map (number of rows)
 	int		map_end_index; // Index of the end of the map in the file
-	char	**map_data;
+	char	**map_data; // 2D array representing the map data
 }	t_map;
 
 typedef struct s_img
@@ -116,7 +116,7 @@ typedef struct s_img
 
 typedef struct s_ray
 {
-	double	camera_x; // Camera position on the x-axis (right side 1,center 0, left side -1)
+	double	camera_x; // Camera position on the x-axis
 	double	dir_x; // Direction vector x-component
 	double	dir_y; // Direction vector y-component
 	int		map_x; // Current x position in the map
@@ -149,9 +149,9 @@ typedef struct s_data
 	double		player_dir_y; // Player's direction vector y-component
 	double		player_plane_x; // Player's camera plane x-component
 	double		player_plane_y; // Player's camera plane y-component
-	int			player_move_y;
-	int			player_move_x;
-	int			player_rotate;
+	int			player_move_y; // Vertical movement direction
+	int			player_move_x; // Horizontal movement direction
+	int			player_rotate; // Rotation direction
 	int			player_has_moved; // Flag to check if the player has moved
 	int			**textures; //Array of textures
 	int			**tex_pixels; //Array of texture pixels
@@ -160,32 +160,32 @@ typedef struct s_data
 	char		*tex_south; //Path to the south texture
 	char		*tex_west; //Path to the west texture
 	int			tex_size; // Texture pixel. Im my case 128x128
-	int			tex_index;
-	double		tex_step;
-	double		tex_pos;
-	int			tex_x;
-	int			tex_y;
+	int			tex_index; // Index for the texture
+	double		tex_step; // Step size for texture mapping
+	double		tex_pos; // Texture position for current ray
+	int			tex_x; // X coordinate for texture
+	int			tex_y; // Y coordinate for texture
 	char		**cub_file; //Content of .cub file
 	char		*cub_path; // Path to the .cub file
 	int			cub_height; //Number of lines in the .cub file
 	int			cub_fd; // File descriptor for the .cub file
 	int			*col_ceiling; // RGB values for ceiling color
 	int			*col_floor; // RGB values for floor color
-	int			col_ceiling_int;
-	int			col_floor_int;
+	int			col_ceiling_int; // Integer representation of ceiling color
+	int			col_floor_int; // Integer representation of floor color
 	t_ray		ray;
 }	t_data;
 
 typedef struct s_render_data
 {
-	float	ray_angle; // Angle of the ray relative to the player's view direction
-	float	distance_to_wall; // Distance from the player to the wall that was hit by the ray
-	int		hit_wall; // Flag indicating whether the ray hit a wall (1: hit, 0: no hit)
-	float	ray_pos_x; // X-coordinate of the ray's current position during the trace
-	float	ray_pos_y; // Y-coordinate of the ray's current position during the trace
-	int		line_height; // Height of the line to be drawn on the screen for the wall slice
-	int		draw_start; // Starting y-coordinate on the screen where the wall slice begins.
-	int		draw_end; // Ending y-coordinate on the screen where the wall slice ends.
+	float	ray_angle; // Ray angle relative to player's view
+	float	distance_to_wall; // Distance to the wall hit by the ray
+	int		hit_wall; // Flag: did the ray hit a wall?  (1: hit, 0: no hit)
+	float	ray_pos_x; // Ray's current x position
+	float	ray_pos_y; // Ray's current y position
+	int		line_height; // Height of the wall slice on screen
+	int		draw_start; // Start y-coordinate for the wall slice
+	int		draw_end; // End y-coordinate for the wall slice
 	int		color; // Color of the wall slice to be drawn
 }	t_render_data;
 
@@ -224,9 +224,9 @@ int		parsing(t_data *data, char **argv);
 int		validate_map(t_data *data, char **map);
 
 //-------validate_textures.c-------
-int	validate_textures(t_data *data);
-int	validate_xpm_file(char *filename);
-int	check_xpm_file_extension(char *filename);
+int		validate_textures(t_data *data);
+int		validate_xpm_file(char *filename);
+int		check_xpm_file_extension(char *filename);
 
 //---------add_player_dir.c--------
 void	add_player_direction(t_data *data);
@@ -287,16 +287,16 @@ int		render(t_data *data);
 void	render_images(t_data *data);
 
 //--------player_move.c-----------
-int	move_player(t_data *data);
+int		move_player(t_data *data);
 
 //---------player_rotate.c----------
-int rotate_player(t_data *data, double rotdir);
+int		rotate_player(t_data *data, double rotdir);
 
 //--------validate_move.c----------
-int	validate_move(t_data *data, double new_x, double new_y);
+int		validate_move(t_data *data, double new_x, double new_y);
 
 //-------------ray.c---------------
-int	raycasting(t_data *data);
+int		raycasting(t_data *data);
 
 //----------texture.c--------------
 void	update_texture_pixels(t_data *data, t_ray *ray, int x);
