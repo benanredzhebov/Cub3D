@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 10:07:44 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/27 10:06:19 by beredzhe         ###   ########.fr       */
+/*   By: beredzhe <beredzhe@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   demacinema <demacinema@student.42.de>        +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/12 15:25:18 by both              #+#    #+#             */
+/*   Updated: 2024/08/12 15:25:55 by both             ###   ########.de       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ stored in data->map*/
 void	init_texture_pixels(t_data *data)
 {
 	int	i;
+
 	if (data->tex_pixels)
 		free_array_2d((void **)data->tex_pixels);
 	data->tex_pixels = ft_calloc(data->map->win_height + 1,

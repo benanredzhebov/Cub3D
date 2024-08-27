@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   retrieve_file_data.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/05 13:18:20 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/27 09:42:26 by beredzhe         ###   ########.fr       */
+/*   By: beredzhe <beredzhe@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   demacinema <demacinema@student.42.de>        +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/12 15:25:18 by both              #+#    #+#             */
+/*   Updated: 2024/08/12 15:25:55 by both             ###   ########.de       */
 /*                                                                            */
 /* ************************************************************************** */
 

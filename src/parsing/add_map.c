@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/07 10:10:43 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/27 13:45:47 by beredzhe         ###   ########.fr       */
+/*   By: beredzhe <beredzhe@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   demacinema <demacinema@student.42.de>        +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/12 15:25:18 by both              #+#    #+#             */
+/*   Updated: 2024/08/12 15:25:55 by both             ###   ########.de       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ static int	retrieve_map_data(t_data *data, char **cub_file, int i)
 int	add_map(t_data *data, char **cub_file, int i)
 {
 	int	j;
-	
+
 	data->map = malloc(sizeof(t_map));
 	if (!data->map)
 	{
