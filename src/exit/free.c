@@ -99,12 +99,12 @@ void	free_data(t_data *data)
 	free_cub(data);
 	free_textures(data);
 	free_colors(data);
-	if (data->map->map_data != NULL)
+	if (data->map->map_data)
 	{
 		free_array_2d((void **)data->map->map_data);
 		data->map->map_data = NULL;
 	}
-	if (data->map != NULL)
+	if (data->map)
 	{
 		free(data->map);
 		data->map = NULL;

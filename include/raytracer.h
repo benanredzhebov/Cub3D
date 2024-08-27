@@ -85,7 +85,7 @@ enum e_status
 /* this struct is used only temporary to check validity of the map*/
 typedef struct s_dfs
 {
-	char	**map; //2D arrayt representing the map
+	char	**map; //2D array representing the map
 	int		h; // Height of the map
 	int		w; // Width of the map
 	int		valid; // Flag indicating if the map is valid
