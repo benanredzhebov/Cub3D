@@ -10,11 +10,14 @@
 #                                                                              #
 # **************************************************************************** #
 
+.SILENT:
+
 NAME	=	libft.a
 
 CC		=	cc
 
 CFLAGS	=	-Wall -Wextra -Werror
+MAKEFLAGS += --no-print-directory
 
 SRC =		ft_isalpha.c \
 			ft_isdigit.c \
@@ -80,7 +83,7 @@ bonus:		$(B_OBJ)
 	@ar -crs $(NAME)	$(B_OBJ)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@rm -rf $(OBJ)	$(B_OBJ)

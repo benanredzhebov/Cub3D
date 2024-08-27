@@ -1,18 +1,21 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/08/01 11:16:35 by beredzhe          #+#    #+#              #
-#    Updated: 2024/08/23 09:40:15 by beredzhe         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+# ************************************************************************** #
+#                                                                            #
+#                                                        :::      ::::::::   #
+#   Makefile                                           :+:      :+:    :+:   #
+#                                                    +:+ +:+         +:+     #
+#   By: beredzhe <beredzhe@student.42wolfsburg.de> +#+  +:+       +#+        #
+#   demacinema <demacinema@student.42.de>        +#+#+#+#+#+   +#+           #
+#   Created: 2024/08/12 15:25:18 by both              #+#    #+#             #
+#   Updated: 2024/08/12 15:25:55 by both             ###   ########.de       #
+#                                                                            #
+# ************************************************************************** #
+
+.SILENT:
 
 NAME	= cub3D
 cc		= cc
 CFLAGS	= -Wall -Wextra -Werror -g -Imlx
+MAKEFLAGS += --no-print-directory
 
 SRC_PATH = src/
 OBJ_PATH = obj/
@@ -35,7 +38,7 @@ ifeq ($(UNAME_S), Linux)
 MLX_DIR = ./minilibx-linux
 MLXLIB = $(MLX_DIR)/libmlx.a
 MLXFLAGS = -L$(MLX_DIR) -lmlx -lX11 -lXext -lm
-CFLAGS = -D__LINUX__
+CFLAGS += -D__LINUX__
 
 # macOS
 else
@@ -44,33 +47,33 @@ MLXLIB = $(MLX_DIR)/libmlx.a
 MLXFLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 CFLAGS = 
 endif
-# endif marks the end of a conditional block in a Makefile
+# endif
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c  $(HEADER)
 	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(MAKE) -C libft
-	$(MAKE) -C $(MLX_DIR)
-	$(CC) $(OBJ) $(CFLAGS) $(LIBFT_A) $(MLXFLAGS) -o $(NAME)
+	@$(MAKE) -C libft
+	@$(MAKE) -C $(MLX_DIR)
+	@$(CC) $(OBJ) $(CFLAGS) $(LIBFT_A) $(MLXFLAGS) -o $(NAME)
 	@echo "------------------------------"
 	@echo "\033[32mProject successfully compiled!\033[0m"
 	@echo "------------------------------"
 
 clean:
-	$(MAKE) clean -C $(MLX_DIR)
-	$(MAKE) clean -C libft
-	$(RM) -rf $(OBJ_PATH)
+	@$(MAKE) clean -C $(MLX_DIR)
+	@$(MAKE) clean -C libft
+	@$(RM) -rf $(OBJ_PATH)
 	@echo "---------"
 	@echo "\033[31mCleaned!\033[0m"
 	@echo "---------"
 	
 fclean: clean
-	$(RM) $(NAME)
-	$(MAKE) fclean -C libft
+	@$(RM) $(NAME)
+	@$(MAKE) fclean -C libft
 	@echo "-------------"
 	@echo "\033[31mFull cleaned!\033[0m"
 	@echo "-------------"
