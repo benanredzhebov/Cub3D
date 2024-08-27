@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 13:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/23 11:32:36 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/27 10:19:12 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@
 # define WIN_WIDTH 1200
 # define WIN_HEIGHT 900
 # define TILE_SIZE 128
-// # define MAP_WIDTH 10
-// # define MAP_HEIGHT 10
 
 # define MOVESPEED 0.07000
 # define ROTSPEED 0.048

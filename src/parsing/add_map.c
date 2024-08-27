@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:10:43 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/23 10:10:24 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/27 13:45:47 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,14 @@ static int	retrieve_map_data(t_data *data, char **cub_file, int i)
 int	add_map(t_data *data, char **cub_file, int i)
 {
 	int	j;
-
+	
+	data->map = malloc(sizeof(t_map));
+	if (!data->map)
+	{
+		print_error("Failed to allocation memory for map!");
+		exit(FAILURE);
+	}
+	init_map(data->map);
 	if (retrieve_map_data(data, cub_file, i) == FAILURE)
 		return (FAILURE);
 	if (DEBUG)
