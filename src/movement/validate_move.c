@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 08:45:38 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/28 09:18:43 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/28 13:11:57 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ if (x < 0.25 || x >= data->map->map_width - 1.25)
 	if (y < 0.25 || y >= data->map->map_height -0.25)
 		return (false);
 	return (true);*/
-static bool is_valid_pos_in_map(t_data *data, double x, double y)
+static bool	is_valid_pos_in_map(t_data *data, double x, double y)
 {
 	if (x < 0 || x >= data->map->map_width * TILE_SIZE)
 		return (false);
@@ -28,7 +28,7 @@ static bool is_valid_pos_in_map(t_data *data, double x, double y)
 	return (true);
 }
 
-static bool is_valid_pos(t_data *data, double x, double y)
+static bool	is_valid_pos(t_data *data, double x, double y)
 {
 	if (is_valid_pos_in_map(data, x, y))
 		return (true);
@@ -37,9 +37,9 @@ static bool is_valid_pos(t_data *data, double x, double y)
 
 /*checks if the player can move to a new position on the map.
 It updates the player's position if the move is valid.*/
-int validate_move(t_data *data, double new_x, double new_y)
+int	validate_move(t_data *data, double new_x, double new_y)
 {
-	int moved;
+	int	moved;
 
 	moved = 0;
 	if (is_valid_pos(data, new_x, data->player_pos_y))

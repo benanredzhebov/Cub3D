@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 11:36:39 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/28 09:21:08 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/28 13:11:05 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,10 @@ void	read_and_save_cub_file(int row, int col, int i, t_data *data)
 		data->cub_file[row]
 			= ft_calloc(ft_strlen(line) + 1, sizeof(char));
 		if (!data->cub_file[row])
+		{
 			return (print_error("Memory allocation failed"),
 				clean_exit(data, FAILURE));
+		}
 		while (line[i] != '\0')
 			data->cub_file[row][col++] = line[i++];
 		data->cub_file[row++][col] = '\0';

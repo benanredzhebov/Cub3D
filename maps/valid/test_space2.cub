@@ -1,13 +1,13 @@
-   WE                            ./textures/west.xpm 
-NO      ./textures/north.xpm
+   WE                            ./textures/mine/west.xpm 
+NO      ./textures/mine/north.xpm
 
 
 
-SO ./textures/south.xpm
+SO ./textures/mine/south.xpm
 
 F   128, 128, 128
 
-EA ./textures/east.xpm
+EA ./textures/mine/east.xpm
 
 
 

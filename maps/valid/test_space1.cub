@@ -6,7 +6,7 @@
 
 
 
-NO ./textures/north.xpm
+NO ./textures/mine/north.xpm
 
 
 
@@ -15,9 +15,9 @@ NO ./textures/north.xpm
 
 
 
-SO ./textures/south.xpm
-                        WE ./textures/west.xpm
-        EA ./textures/east.xpm            
+SO ./textures/mine/south.xpm
+                        WE ./textures/mine/west.xpm
+        EA ./textures/mine/east.xpm            
 
         F 128,           128,             128
 C 153,          204,255

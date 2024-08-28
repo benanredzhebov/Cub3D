@@ -1,7 +1,7 @@
-NO textures/test/north.xpm
-SO textures/test/south.xpm
-WE textures/test/x
-EA textures/test/east.xpm
+NO textures/mine/north.xpm
+SO textures/mine/south.xpm
+WE textures/mine/x
+EA textures/mine/east.xpm
 
 F 20,20,20
 C 200,200,200

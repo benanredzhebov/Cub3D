@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:25:18 by both              #+#    #+#             */
-/*   Updated: 2024/08/28 09:13:50 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/28 11:34:53 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,13 +99,13 @@ void	free_data(t_data *data)
 	free_cub(data);
 	free_textures(data);
 	free_colors(data);
-	if (data->map->map_data)
+	if (data->map != NULL)
 	{
-		free_array_2d((void **)data->map->map_data);
-		data->map->map_data = NULL;
-	}
-	if (data->map)
-	{
+		if (data->map->map_data != NULL)
+		{
+			free_array_2d((void **)data->map->map_data);
+			data->map->map_data = NULL;
+		}
 		free(data->map);
 		data->map = NULL;
 	}
