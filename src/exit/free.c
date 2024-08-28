@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/05 10:27:04 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/27 15:03:05 by beredzhe         ###   ########.fr       */
+/*   Created: 2024/08/12 15:25:18 by both              #+#    #+#             */
+/*   Updated: 2024/08/28 09:13:50 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,10 @@ void	free_data(t_data *data)
 	{
 		free_array_2d((void **)data->map->map_data);
 		data->map->map_data = NULL;
+	}
+	if (data->map)
+	{
+		free(data->map);
+		data->map = NULL;
 	}
 }

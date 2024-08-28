@@ -6,7 +6,7 @@
 #    By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/01 11:16:35 by beredzhe          #+#    #+#              #
-#    Updated: 2024/08/23 09:40:15 by beredzhe         ###   ########.fr        #
+#    Updated: 2024/08/28 09:10:40 by beredzhe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,4 +77,5 @@ fclean: clean
 
 re: fclean all
 
+.PHONY:	all clean fclean re
 .PHONY:	all clean fclean re

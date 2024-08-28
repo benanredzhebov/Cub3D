@@ -6,15 +6,18 @@
 #    By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/14 08:50:20 by beredzhe          #+#    #+#              #
-#    Updated: 2024/08/05 12:22:42 by beredzhe         ###   ########.fr        #
+#    Updated: 2024/08/28 09:25:31 by beredzhe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+.SILENT:
 
 NAME	=	libft.a
 
 CC		=	cc
 
 CFLAGS	=	-Wall -Wextra -Werror
+MAKEFLAGS += --no-print-directory
 
 SRC =		ft_isalpha.c \
 			ft_isdigit.c \
@@ -80,7 +83,7 @@ bonus:		$(B_OBJ)
 	@ar -crs $(NAME)	$(B_OBJ)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@rm -rf $(OBJ)	$(B_OBJ)

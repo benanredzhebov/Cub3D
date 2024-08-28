@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/21 14:37:55 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/23 14:50:17 by beredzhe         ###   ########.fr       */
+/*   Created: 2024/08/12 15:25:18 by both              #+#    #+#             */
+/*   Updated: 2024/08/28 09:24:54 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,8 @@ void	update_texture_pixels(t_data *data, t_ray *ray, int x)
 	get_texture_index(data, ray);
 	data->tex_x = (int)(ray->wall_x * data->tex_size);
 	if ((ray->side == 0 && ray->dir_x < 0)
-		|| (ray->side == 1 && ray->dir_y > 0)){
+		|| (ray->side == 1 && ray->dir_y > 0))
 		data->tex_x = data->tex_size - data->tex_x - 1;
-		}
 	data->tex_step = 1.0 * data->tex_size / ray->line_height;
 	data->tex_pos = (ray->draw_start - data->map->win_height / 2
 			+ ray->line_height / 2) * data->tex_step;
