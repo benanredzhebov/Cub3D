@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 13:11:39 by both              #+#    #+#             */
-/*   Updated: 2024/08/28 09:12:21 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/29 09:42:44 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,7 +246,7 @@ int		quit_cub3d(t_data *data);
 
 //------------save_cub.c------------
 int		check_cub_file_extension(char *filename);
-int		validate_cub_file(char *filename);
+int		validate_cub_file(char *filename, t_data *data);
 int		line_counter(char *filepath, t_data *data);
 void	read_and_save_cub_file(int row, int col, int i, t_data *data);
 void	save_cub(char *cub_path, t_data *data);

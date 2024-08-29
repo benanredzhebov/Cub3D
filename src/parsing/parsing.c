@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 11:34:15 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/28 09:20:11 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/29 10:07:10 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	parsing(t_data *data, char **av)
 {
 	char	**cub_file;
 
-	if (validate_cub_file(av[1]) == FAILURE)
-		exit(FAILURE);
+	if (validate_cub_file(av[1], data) == FAILURE)
+		return (free_data(data), FAILURE);
 	save_cub(av[1], data);
 	cub_file = data->cub_file;
 	if (retrieve_file_data(data, cub_file) == FAILURE)

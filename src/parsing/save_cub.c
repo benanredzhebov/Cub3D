@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 11:36:39 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/08/28 13:11:05 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/29 10:06:55 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,23 @@ int	check_cub_file_extension(char *filename)
 
 /*validates a .cub file by checking its extension and
 attempting to open it*/
-int	validate_cub_file(char *filename)
+int	validate_cub_file(char *filename, t_data *data)
 {
 	int	fd;
 
 	if (check_cub_file_extension(filename) == FAILURE)
-		return (print_error("Invalid file extension"), FAILURE);
+	{
+		print_error("Invalid file extension");
+		free_data(data);
+		return (FAILURE);
+	}
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		return (print_error("Couldn't open file"), FAILURE);
+	{
+		print_error("Couldn't open file");
+		free_data(data);
+		return (FAILURE);
+	}
 	close(fd);
 	return (SUCCESS);
 }
