@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:25:18 by both              #+#    #+#             */
-/*   Updated: 2024/08/28 09:23:49 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/30 10:59:14 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ static void	calculate_line_height(t_ray *ray, t_data *data)
 /*1.Determine which direction (X or Y) the ray should advance.
 2.Update the ray's position and side of intersection.
 3.Check if the ray is still within map boundaries.
-4.Check if the ray has hit a wall.*/
+4.Check if the ray has hit a wall.
+Iteratively steps through the map grid, moving in the
+direction of the smallest side distance, until it
+either hits a wall or goes out of bounds.*/
 static void	perform_dda(t_data *data, t_ray *ray)
 {
 	int	hit;
@@ -70,15 +73,9 @@ static void	perform_dda(t_data *data, t_ray *ray)
 3.step_y: Determines whether the ray moves to the next or previous row
 4.sidedist_y: Distance to the next horizontal(-) grid line.
 
-THIS WAS ON THE TOP OF set_dda:
-	// printf("Initial values: dir_x = %f, dir_y = %f, player_pos_x = %f, 
-	// player_pos_y = %f, map_x = %d, map_y = %d\n",
-    //     ray->dir_x, ray->dir_y, data->player_pos_x, 
-	// data->player_pos_y, ray->map_x, ray->map_y);
-
-AND THIS AFTER EACH CASE:
-		printf("dir_x < 0: step_x = %d, sidedist_x = %f\n", 
-		ray->step_x, ray->sidedist_x);	
+Sets up the initial conditions for the DDA algorithm by determiningthe step
+direction and initial side distances fot both the x and y directions based
+on the ray's direction and the player's position.
 */
 static void	set_dda(t_ray *ray, t_data *data)
 {
@@ -114,6 +111,9 @@ of the ray in the map grid)
 4.Calculate the distance the ray must travel in the x and y directions
 to pass from one x-side to the next x-side or from one y-side to the next
 y-side
+Initialize a ray, calculates its direction based on the player's
+position and direction, and sets up initial values for
+raycasting in a grid-based map.
 printf("Ray %d: x=%2f, camera_x=%.2f, dir_x=%.2f, dir_y=%.2f,
 map_x=%d, map_y=%d, deltadist_x=%.2f, deltadist_y=%.2f\n",
 			x, ray->camera_x, ray->dir_x, ray->dir_y, ray->map_x, 
