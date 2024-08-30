@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:25:18 by both              #+#    #+#             */
-/*   Updated: 2024/08/28 09:24:54 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/08/30 11:09:41 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,16 @@ static void	get_texture_index(t_data *data, t_ray *ray)
 			data->tex_index = NORTH;
 	}
 }
+
+/*1.The tex_x coordinate is calculated based on the wall hit
+position (ray->wall_x). If the ray hit a vertical wall and the
+ray's direction is negative in the x direction, or if the ray
+hit a horizontal wall and the ray's direction is positive in
+the y direction, the tex_x coordinate is adjusted
+2.The tex_step is the amount to step in the texture for each
+pixel in the column. The initial tex_pos is calculated based
+on the starting position of the line to draw.
+3.*/
 
 void	update_texture_pixels(t_data *data, t_ray *ray, int x)
 {
