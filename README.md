@@ -16,5 +16,5 @@ This is the Cub3D project. Below are some important points:
 - `ESC` to exit the game.
 
 ## Authors
-- Benan Redzhebov, 
+- Benan Redzhebov 
 - Demetrio Rodrigues
