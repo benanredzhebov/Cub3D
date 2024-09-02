@@ -7,7 +7,7 @@ This is the Cub3D project. Below are some important points:
 - Ensure that you have all dependencies installed before compiling.
 
 ## Project Description
-- Cub3D is a 3D game project inspired by the classic Wolfenstein 3D game. It is developed using the [MiniLibX library](https://harm-smits.github.io/42docs/libs/minilibx).
+- Cub3D is a 3D game project inspired by the classic [Wolfenstein 3D game](https://www.retrogames.cz/play_408-DOS.php). It is developed using the [MiniLibX library](https://harm-smits.github.io/42docs/libs/minilibx).
 - The project supports basic 3D rendering, player movement, and collision detection.
 
 ## Controls
